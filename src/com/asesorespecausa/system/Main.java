@@ -3,18 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package com.asesorespecausa.system;
+import com.asesorespecausa.system.utils.SceneManager;
+
+import com.asesorespecausa.system.utils.ViewFactory;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.stage.Stage;
 
 /**
  *
  * @author informatica
  */
-public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
+public class Main extends Application {
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        launch(args);
     }
-    
+
+    @Override
+    public void start(Stage stageRoot) {
+        SceneManager.getInstanciaSceneManger().setStagePrincipal(stageRoot);
+        ViewFactory viewFacto = new ViewFactory();
+        viewFacto.viewLogin();
+    }
+
 }
