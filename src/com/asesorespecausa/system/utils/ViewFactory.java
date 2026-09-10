@@ -15,9 +15,8 @@ import com.asesorespecausa.system.utils.SceneManager;
 
 public class ViewFactory {
 
-//Atributos
-    private final String PATH_VIEWS = "/";
-
+    private final String PATH_VIEWS = "/com/asesorespecausa/system/view/";
+    
 //Metodos
     public Scene loadFileFXML(String nameFile, int width, int height) {
         String pathOfFile = PATH_VIEWS + nameFile;
@@ -42,15 +41,16 @@ public class ViewFactory {
         try {
             switch (nameFile) {
                 case "Welcome" ->
-                    scene = loadFileFXML("ViewWelcome.fxml", 400, 500);
-//                case "Login" -> {
-//                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro de Usuarios");
-//                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-//                    scene = loadFileFXML("RegisterView.fxml", 350, 400);
-//                }
+                    scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+                case "Login" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de sesión");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("ViewLogin.fxml", 500, 400);
+                }
 
                 default ->
-                    scene = loadFileFXML("ViewWelcome.fxml", 400, 500);
+                    scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
         } catch (NullPointerException e) {
@@ -58,13 +58,11 @@ public class ViewFactory {
             //Alert
         }
     }
-
-    public void viewRegister() {
-        loadScene("register");
-    }
-
     public void viewLogin() {
-        loadScene("login");
+        loadScene("Login");
+    }
+    public void viewWelcome() {
+        loadScene("Welcome");
     }
 
 }

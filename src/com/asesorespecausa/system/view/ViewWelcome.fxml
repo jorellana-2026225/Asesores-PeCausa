@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="3.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="3.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.WelcomeController">
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
@@ -51,7 +51,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Login" textOverrun="LEADING_ELLIPSIS" />
+
+                  <Button mnemonicParsing="false" onMouseClicked="#onLogin" text="Login" textOverrun="LEADING_ELLIPSIS" />
                   <Button mnemonicParsing="false" text="Actuaciones" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" text="Expedientes" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" text="Registro" GridPane.columnIndex="1" />
