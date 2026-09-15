@@ -1,20 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.asesorespecausa.system;
 
-/**
- *
- * @author informatica
- */
-public class Main {
+import com.asesorespecausa.system.utils.SceneManager;
 
-    /**
-     * @param args the command line arguments
-     */
+import com.asesorespecausa.system.utils.ViewFactory;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        launch(args);
     }
-    
+
+    @Override
+    public void start(Stage stageRoot) {
+        SceneManager.getInstanciaSceneManger().setStagePrincipal(stageRoot);
+        ViewFactory viewFacto = new ViewFactory();
+        viewFacto.viewWelcome();
+    }
+
 }
