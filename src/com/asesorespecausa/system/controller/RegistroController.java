@@ -15,10 +15,6 @@ import com.asesorespecausa.system.utils.ViewFactory;
 
 public class RegistroController implements Initializable {
 
-    private static final Pattern EMAIL_PATTERN
-            = Pattern.compile("^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$");
-    private static final Pattern TELEFONO_PATTERN = Pattern.compile("^[0-9]{8}$");
-
     @FXML
     private TextField txtDocumento;
     @FXML
@@ -72,12 +68,15 @@ public class RegistroController implements Initializable {
             return;
         }
 
-
-        System.out.println("Expediente registrado: " );
+        System.out.println("Expediente registrado: ");
 
         ocultarError();
         limpiarFormulario();
         viewFactory.viewWelcome();
+    }
+
+    @FXML
+    public void onRegistrarExpediente(MouseEvent event) {
     }
 
     @FXML
@@ -91,12 +90,6 @@ public class RegistroController implements Initializable {
         if (documento.isEmpty() || nombreCompleto.isEmpty() || telefono.isEmpty()
                 || email.isEmpty() || direccion.isEmpty()) {
             return "Todos los campos son obligatorios.";
-        }
-        if (!TELEFONO_PATTERN.matcher(telefono).matches()) {
-            return "El telefono debe tener 8 digitos numericos.";
-        }
-        if (!EMAIL_PATTERN.matcher(email).matches()) {
-            return "El correo electronico no es valido.";
         }
         return null;
     }

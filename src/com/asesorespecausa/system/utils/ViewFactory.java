@@ -12,7 +12,7 @@ import com.asesorespecausa.system.utils.SceneManager;
 public class ViewFactory {
 
     private final String PATH_VIEWS = "/com/asesorespecausa/system/view/";
-    
+
 //Metodos
     public Scene loadFileFXML(String nameFile, int width, int height) {
         String pathOfFile = PATH_VIEWS + nameFile;
@@ -44,13 +44,16 @@ public class ViewFactory {
                     scene = loadFileFXML("ViewLogin.fxml", 500, 400);
                 }
                 case "Registro" -> {
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro de Expediente");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("ViewRegistro.fxml", 380, 500);
+                    scene = loadFileFXML("ViewRegistro.fxml", 400, 535);
                 }
 
-                default ->
+                default -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Bienvenida");
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+
+                }
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
         } catch (NullPointerException e) {
