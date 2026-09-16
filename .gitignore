@@ -1,2 +1,6 @@
 /build/
+<<<<<<< HEAD
 src/com/asesorespecausa/system/config/Enviroment.java
+=======
+src/com/asesorespecausa/system/config/Enviroment.java
+>>>>>>> b928b85 (feat: Se creo la clase ConexionDB e Incriptacion (Enviroment))

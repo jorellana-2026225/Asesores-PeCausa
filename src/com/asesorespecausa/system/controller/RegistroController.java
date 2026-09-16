@@ -1,9 +1,7 @@
 package com.asesorespecausa.system.controller;
 
 import java.net.URL;
-import java.util.regex.Pattern;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -38,7 +36,6 @@ public class RegistroController implements Initializable {
     private RadioButton rbPersonaIndividual;
     @FXML
     private RadioButton rbEmpresaJuridica;
-    @FXML
 
     private final ViewFactory viewFactory = new ViewFactory();
 
@@ -73,10 +70,6 @@ public class RegistroController implements Initializable {
         ocultarError();
         limpiarFormulario();
         viewFactory.viewWelcome();
-    }
-
-    @FXML
-    public void onRegistrarExpediente(MouseEvent event) {
     }
 
     @FXML
@@ -125,7 +118,5 @@ public class RegistroController implements Initializable {
         rbPersonaIndividual.setSelected(true);
         actualizarPromptsSegunTipoCliente();
     }
-    
-    
-    
+
 }

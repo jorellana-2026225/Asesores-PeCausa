@@ -11,7 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" styleClass="pane" stylesheets="@../resources/styles/LoginStyle.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.LoginController">
+=======
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" styleClass="pane" stylesheets="@../resources/styles/LoginStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller">
+>>>>>>> b928b85 (feat: Se creo la clase ConexionDB e Incriptacion (Enviroment))
    <children>
       <VBox alignment="TOP_CENTER" layoutX="186.0" layoutY="4.0" prefHeight="368.0" prefWidth="300.0" spacing="10.0" styleClass="vBox">
          <padding>
@@ -29,7 +33,11 @@
             <PasswordField />
             <Label styleClass="etiqueta" text="Confirmar contraseña" />
             <PasswordField />
+<<<<<<< HEAD
             <Button mnemonicParsing="false" onMouseClicked="#onIniciarSesion" styleClass="btn-login" text="Iniciar sesion" />
+=======
+            <Button mnemonicParsing="false" onMouseClicked="#onLogin" styleClass="btn-login" text="Iniciar sesion" />
+>>>>>>> b928b85 (feat: Se creo la clase ConexionDB e Incriptacion (Enviroment))
          </children>
       </VBox>
       <ImageView fitHeight="224.0" fitWidth="170.0" layoutX="22.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">

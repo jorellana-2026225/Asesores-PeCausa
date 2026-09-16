@@ -18,7 +18,5 @@ public class LoginController implements Initializable {
         ViewFactory viewFacto = new ViewFactory();
         viewFacto.viewWelcome();
     }
- 
-    
     
 }

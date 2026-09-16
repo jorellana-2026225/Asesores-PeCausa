@@ -3,16 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/WelcomeStyle.css</file>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/LoginStyle.css</file>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/model/Cliente.java</file>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/controller/WelcomeController.java</file>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/RegistroStyle.css</file>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/controller/RegistroController.java</file>
-            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/Main.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/2023-591/Bufet_Abogados/Asesores-PeCausa/src/com/asesorespecausa/system/Main.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/2023-591/Bufet_Abogados/Asesores-PeCausa/src/com/asesorespecausa/system/utils/SceneManager.java</file>
-            <file>file:/C:/Users/Informatica/Desktop/2023-591/Bufet_Abogados/Asesores-PeCausa/src/com/asesorespecausa/system/utils/ViewFactory.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/nbproject/private/private.xml</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/controller/LoginController.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/utils/ViewFactory.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/controller/RegistroController.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/.gitignore</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/Main.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/utils/SceneManager.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/repository/AuthenticationRepository.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/repository/ClienteRepository.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/Enviroment.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/nbproject/project.properties</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/controller/WelcomeController.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/view/ViewLogin.fxml</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/ConexionDB.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/nbproject/private/private.properties</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/view/ViewRegistro.fxml</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/ddl.sql</file>
         </group>
     </open-files>
 </project-private>

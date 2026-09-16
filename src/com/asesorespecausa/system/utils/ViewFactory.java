@@ -7,10 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import com.asesorespecausa.system.Main;
-import com.asesorespecausa.system.utils.SceneManager;
 
 public class ViewFactory {
 
+//Atributos
     private final String PATH_VIEWS = "/com/asesorespecausa/system/view/";
 
 //Metodos
@@ -48,11 +48,9 @@ public class ViewFactory {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewRegistro.fxml", 400, 535);
                 }
-
                 default -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Bienvenida");
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
-
                 }
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
@@ -73,7 +71,5 @@ public class ViewFactory {
     public void viewRegistro() {
         loadScene("Registro");
     }
-    
-    
 
 }
