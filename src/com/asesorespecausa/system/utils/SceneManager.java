@@ -14,6 +14,22 @@ public class SceneManager {
     private SceneManager() {
     }
 
+/**
+ *
+ * @author informatica
+ */
+public class  SceneManager {
+  
+    //Atributos 
+    private static SceneManager instanciaSceneManager;
+
+ 
+    private Stage stagePrincipal;
+    
+    
+    //Metodos
+    private SceneManager(){}
+    
     public static SceneManager getInstanciaSceneManger() {
         if (instanciaSceneManager == null) {
             instanciaSceneManager = new SceneManager();
@@ -39,4 +55,11 @@ public class SceneManager {
         return stagePrincipal;
     }
 
+ 
+    public Stage getStagePrincipal() {
+        return stagePrincipal;
+    }
+    
+    
+    
 }
