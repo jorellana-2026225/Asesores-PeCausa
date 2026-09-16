@@ -7,12 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import com.asesorespecausa.system.Main;
+import com.asesorespecausa.system.utils.SceneManager;
 
 public class ViewFactory {
 
-//Atributos
     private final String PATH_VIEWS = "/com/asesorespecausa/system/view/";
-
+    
 //Metodos
     public Scene loadFileFXML(String nameFile, int width, int height) {
         String pathOfFile = PATH_VIEWS + nameFile;
