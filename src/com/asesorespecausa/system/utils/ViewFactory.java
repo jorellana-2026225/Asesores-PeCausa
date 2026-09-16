@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.asesorespecausa.system.utils;
 
 import java.io.IOException;
@@ -11,12 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import com.asesorespecausa.system.Main;
-import com.asesorespecausa.system.utils.SceneManager;
 
 public class ViewFactory {
 
+//Atributos
     private final String PATH_VIEWS = "/com/asesorespecausa/system/view/";
-    
+
 //Metodos
     public Scene loadFileFXML(String nameFile, int width, int height) {
         String pathOfFile = PATH_VIEWS + nameFile;
@@ -43,14 +39,13 @@ public class ViewFactory {
                 case "Welcome" ->
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
                 case "Login" -> {
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de sesión");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewLogin.fxml", 500, 400);
                 }
 
                 default ->
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
-
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
         } catch (NullPointerException e) {
@@ -58,11 +53,13 @@ public class ViewFactory {
             //Alert
         }
     }
-    public void viewLogin() {
-        loadScene("Login");
-    }
+
     public void viewWelcome() {
         loadScene("Welcome");
+    }
+
+    public void viewLogin() {
+        loadScene("Login");
     }
 
 }
