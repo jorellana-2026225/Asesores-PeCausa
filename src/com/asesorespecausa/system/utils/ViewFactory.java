@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.asesorespecausa.system.utils;
 
 import java.io.IOException;
@@ -43,14 +39,18 @@ public class ViewFactory {
                 case "Welcome" ->
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
                 case "Login" -> {
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de sesión");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewLogin.fxml", 500, 400);
+                }
+                case "Registro" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro de Expediente");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("ViewRegistro.fxml", 380, 500);
                 }
 
                 default ->
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
-
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
         } catch (NullPointerException e) {
@@ -58,11 +58,17 @@ public class ViewFactory {
             //Alert
         }
     }
+
+    public void viewWelcome() {
+        loadScene("Welcome");
+    }
+
     public void viewLogin() {
         loadScene("Login");
     }
-    public void viewWelcome() {
-        loadScene("Welcome");
+
+    public void viewRegistro() {
+        loadScene("Registro");
     }
 
 }
