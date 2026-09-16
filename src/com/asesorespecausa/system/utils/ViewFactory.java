@@ -73,5 +73,7 @@ public class ViewFactory {
     public void viewRegistro() {
         loadScene("Registro");
     }
+    
+    
 
 }

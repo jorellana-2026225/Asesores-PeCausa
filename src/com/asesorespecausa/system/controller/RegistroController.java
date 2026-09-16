@@ -125,4 +125,7 @@ public class RegistroController implements Initializable {
         rbPersonaIndividual.setSelected(true);
         actualizarPromptsSegunTipoCliente();
     }
+    
+    
+    
 }

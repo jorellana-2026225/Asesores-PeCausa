@@ -24,5 +24,7 @@ public class WelcomeController implements Initializable {
         ViewFactory viewFacto = new ViewFactory();
         viewFacto.viewRegistro();
     }
+    
+    
 
 }
