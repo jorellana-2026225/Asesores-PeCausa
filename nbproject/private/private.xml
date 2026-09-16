@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/WelcomeStyle.css</file>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/LoginStyle.css</file>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/model/Cliente.java</file>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/controller/WelcomeController.java</file>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/RegistroStyle.css</file>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/controller/RegistroController.java</file>
+            <file>file:/C:/Users/tilin/Desktop/Nueva%20carpeta%20(2)/Asesores-PeCausa2/Asesores-PeCausa/src/com/asesorespecausa/system/Main.java</file>
+        </group>
     </open-files>
 </project-private>

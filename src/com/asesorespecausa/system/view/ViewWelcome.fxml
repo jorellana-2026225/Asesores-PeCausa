@@ -42,7 +42,7 @@
                   <Button mnemonicParsing="false" onMouseClicked="#onLogin" styleClass="btn-login" text="Login" textOverrun="LEADING_ELLIPSIS" />
                   <Button mnemonicParsing="false" styleClass="btn-actuaciones" text="Actuaciones" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" styleClass="btn-expedientes" text="Expedientes" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" styleClass="btn-registro" text="Registro" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onMouseClicked="#onRegistro" styleClass="btn-registro" text="Registro" GridPane.columnIndex="1" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

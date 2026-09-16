@@ -19,4 +19,10 @@ public class WelcomeController implements Initializable {
         viewFacto.viewLogin();
     }
 
+    @FXML
+    public void onRegistro(MouseEvent event) {
+        ViewFactory viewFacto = new ViewFactory();
+        viewFacto.viewRegistro();
+    }
+
 }
