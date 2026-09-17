@@ -1,4 +1,3 @@
-
 package com.asesorespecausa.system.model;
 
 
@@ -6,22 +5,19 @@ public class User {
     
     private String name;
     private String password;
-    private String rol;
-    private String idUser;
+    private char idUser;
     
     public User(){}
     
-       public User(String name, String password, String rol,String idUser) {
+       public User(String name, String password,char idUser) {
         this.name = name;
         this.password = password;
-        this.rol = rol;
         this.idUser = idUser;
         
     }
-    public User(String name, String password, String rol) {
+    public User(String name, String password) {
         this.name = name;
         this.password = password;
-        this.rol = rol; 
     }
 
     
@@ -41,32 +37,14 @@ public class User {
         this.password = password;
     }
 
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public String getIdUser() {
+    public char getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(char idUser) {
         this.idUser = idUser;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
 }
