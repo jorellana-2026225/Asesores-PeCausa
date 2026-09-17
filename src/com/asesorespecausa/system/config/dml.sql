@@ -167,3 +167,4 @@ CALL sp_buscar_actuacion(
 CALL sp_ver_historial_cronologico(
     'EXP11111-1111-1111-1111-111111111111'
 );
+select * from usuario where nombre_usuario = "admin";

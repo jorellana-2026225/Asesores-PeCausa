@@ -3,11 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/controller/LoginController.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/model/User.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/repository/UserRepository.java</file>
             <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/utils/ViewFactory.java</file>
-            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/ConexionDB.java</file>
-            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/repository/AuthenticationRepository.java</file>
             <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/Main.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/repository/AuthenticationRepository.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/utils/SceneManager.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/resources/images/Llamaa.png</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/dml.sql</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/repository/ClienteRepository.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/resources/images/newfile</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/resources/styles/LoginStyle.css</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/Enviroment.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/view/ViewWelcome.fxml</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/controller/WelcomeController.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/service/AuthenticationStatus.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/view/ViewLogin.fxml</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/service/UserService.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/ConexionDB.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/service/AuthenticationService.java</file>
             <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/view/ViewRegistro.fxml</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/service/UserStatus.java</file>
+            <file>file:/C:/Users/eliui/Desktop/Bufet/Bufet/Asesores-PeCausa/src/com/asesorespecausa/system/config/ddl.sql</file>
         </group>
     </open-files>
 </project-private>
