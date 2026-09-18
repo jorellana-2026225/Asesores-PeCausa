@@ -39,7 +39,7 @@ public class LoginController implements Initializable {
               viewFacto.viewWelcome();
               
         } else if (status == AuthenticationStatus.NOT_EXIST_USER){
-            System.out.println("El Correo ingresado no esta registrado");
+            System.out.println("El Usuario ingresado no esta registrado");
         } else {
             System.out.println("Error en las credenciales");
         }

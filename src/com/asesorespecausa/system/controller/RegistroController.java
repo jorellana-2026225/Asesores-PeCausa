@@ -52,6 +52,10 @@ public class RegistroController implements Initializable {
     }
 
     @FXML
+    public void onRegistrarExpediente(MouseEvent event) {
+    }
+
+    @FXML
     public void onRegistrar(MouseEvent event) {
         String documento = txtDocumento.getText() == null ? "" : txtDocumento.getText().trim();
         String nombreCompleto = txtNombreCompleto.getText() == null ? "" : txtNombreCompleto.getText().trim();

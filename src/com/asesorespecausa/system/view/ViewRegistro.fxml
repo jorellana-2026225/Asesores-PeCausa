@@ -11,12 +11,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<<<<<<< HEAD
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="400.0" spacing="12.0" styleClass="Vbox" stylesheets="@../resources/styles/RegistroStyle.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.RegistroController">
-=======
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="380.0" spacing="12.0" styleClass="Vbox" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.RegistroExpedienteController">
->>>>>>> b928b85 (feat: Se creo la clase ConexionDB e Incriptacion (Enviroment))
-   <padding>
+ <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="400.0" spacing="12.0" styleClass="Vbox" stylesheets="@../resources/styles/RegistroStyle.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.RegistroController">
+    <padding>
       <Insets bottom="25.0" left="30.0" right="30.0" top="30.0" />
    </padding>
    <children>

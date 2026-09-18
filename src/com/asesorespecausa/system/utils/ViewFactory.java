@@ -36,8 +36,11 @@ public class ViewFactory {
         Scene scene = null;
         try {
             switch (nameFile) {
-                case "Welcome" ->
+                case "Welcome" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Bienvenida");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+                }
                 case "Login" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
@@ -49,8 +52,9 @@ public class ViewFactory {
                     scene = loadFileFXML("ViewRegistro.fxml", 400, 535);
                 }
                 default -> {
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Bienvenida");
-                    scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("ViewLogin.fxml", 400, 400);
                 }
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
