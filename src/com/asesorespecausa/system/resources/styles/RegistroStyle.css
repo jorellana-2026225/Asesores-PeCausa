@@ -20,7 +20,8 @@
     -fx-font-weight: bold;
     -fx-background-radius: 15px;
     -fx-padding: 6px 20px;
-}s
+}
+
 
 .cancel-btn {
     -fx-background-color: transparent;
@@ -34,6 +35,14 @@
 .error-label {
     -fx-text-fill: #E74C3C;
     -fx-font-size: 12px;
+}
+
+.btn-individual,
+.btn-juridica {
+    -fx-text-fill: #BA8E23;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 6px 20px;
 }
 
 

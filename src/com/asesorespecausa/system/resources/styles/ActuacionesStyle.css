@@ -1,35 +1,29 @@
-.vboxPadre {
+.anchorPane {
     -fx-background-color: #000000;
     -fx-border-color: #BA8E23;
     -fx-border-width: 1px;
     -fx-border-style: solid;
-    -fx-padding: 8px;
     -fx-border-radius: 6px;
     -fx-background-radius: 5px;
 }
 
-.vbox {
-    -fx-background-color: #000000;
-    -fx-border-radius: 6px;
+.Label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.tableView {
+    -fx-border-color: #BA8E23;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-border-radius: 2px;
     -fx-background-radius: 5px;
 }
 
-.btn-login,
-.btn-registro,
-.btn-expedientes,
-.btn-actuaciones {
-/*    -fx-text-fill: #BA8E23;
-    -fx-font-size: 15px;*/
-    
+.btnClose {
     -fx-background-color: transparent;
     -fx-text-fill: #BA8E23;
     -fx-border-color: #BA8E23;
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
     -fx-padding: 6px 20px;
-
-}
-
-.etiqueta{
-    -fx-text-fill: white;
 }

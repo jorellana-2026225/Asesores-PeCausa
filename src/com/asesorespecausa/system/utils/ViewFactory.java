@@ -51,6 +51,16 @@ public class ViewFactory {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewRegistro.fxml", 400, 535);
                 }
+                case "Expediente" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Expediente");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("viewExpediente.fxml", 900, 600);
+                }
+                case "Actuaciones" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Actuaciones");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("viewActuaciones.fxml", 760, 550);
+                }
                 default -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
@@ -74,6 +84,14 @@ public class ViewFactory {
 
     public void viewRegistro() {
         loadScene("Registro");
+    }
+    
+    public void viewExpediente() {
+        loadScene("Expediente");
+    }
+    
+    public void viewActuaciones() {
+        loadScene("Actuaciones");
     }
 
 }

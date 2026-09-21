@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS AsesoresPeCausa_in4av;
 CREATE DATABASE AsesoresPeCausa_in4av;
 USE AsesoresPeCausa_in4av;
 
--- USUARIO
+-- USUARIO
 CREATE TABLE usuario (
     id_usuario CHAR(36) PRIMARY KEY DEFAULT (UUID()),
     nombre_usuario VARCHAR(50) NOT NULL,
