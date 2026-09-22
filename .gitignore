@@ -1,4 +1,4 @@
-build
+build/
+nbproject/
+dist/
 src/com/asesorespecausa/system/config/Enviroment.java
-dist
-nbproject
