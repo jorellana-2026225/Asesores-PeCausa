@@ -1,4 +1,4 @@
 build/
-nbproject/
+nbproject/private/project.properties
 dist/
 src/com/asesorespecausa/system/config/Enviroment.java
