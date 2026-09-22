@@ -15,21 +15,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="rootPane" prefHeight="600.0" prefWidth="900.0" styleClass="borderPane" stylesheets="@../resources/styles/ExpedienteStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.ExpedienteController">
+<BorderPane fx:id="rootPane" prefHeight="600.0" prefWidth="900.0" styleClass="borderPane" stylesheets="@../resources/styles/ExpedienteStyle.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.ExpedienteController">
 
     <!-- ===================== TOP: Título ===================== -->
     <top>
         <VBox styleClass="vbox-Padre" BorderPane.alignment="CENTER">
             <children>
-            <ImageView fitHeight="160.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/images/Llamaa.png" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="160.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/images/Llamaa.png" />
+                    </image>
+                </ImageView>
             </children>
-         <padding>
-            <Insets left="200.0" />
-         </padding>
+            <padding>
+                <Insets left="200.0" />
+            </padding>
         </VBox>
     </top>
 
@@ -37,29 +37,59 @@
     <left>
         <VBox spacing="12.0" BorderPane.alignment="TOP_CENTER">
             <children>
+
                 <Label styleClass="Label" text="No. Expediente" />
-                <TextField promptText="Ej. EXP-0001" styleClass="contenedorColor" />
+
+                <TextField fx:id="txtNumeroExpediente"
+                           promptText="Ej. EXP-0001"
+                           styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Nombre" />
-                <TextField promptText="Nombre del expediente" styleClass="contenedorColor" />
+
+                <TextField fx:id="txtNombre"
+                           promptText="Nombre del expediente"
+                           styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Fecha" />
-                <DatePicker styleClass="contenedorColor" />
+
+                <DatePicker fx:id="dpFecha"
+                            styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Estado" />
-                <ComboBox prefWidth="220.0" promptText="Seleccione estado" styleClass="contenedorColor" />
+
+                <ComboBox fx:id="cbEstado"
+                          prefWidth="220.0"
+                          promptText="Seleccione estado"
+                          styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Descripción" />
-                <TextArea prefRowCount="5" styleClass="contenedorColor" wrapText="true" />
+
+                <TextArea fx:id="txtDescripcion"
+                          prefRowCount="5"
+                          styleClass="contenedorColor"
+                          wrapText="true" />
 
                 <HBox spacing="10.0" styleClass="button-row">
                     <children>
-                        <Button mnemonicParsing="false" styleClass="btn" text="Guardar" />
-                        <Button mnemonicParsing="false" styleClass="btn" text="Limpiar" />
-                  <Button mnemonicParsing="false" onMouseClicked="#onCloseExpediente" styleClass="btn" text="Cerrar" />
+                        <Button fx:id="btnGuardarExpediente"
+                                mnemonicParsing="false"
+                                onAction="#onGuardarExpediente"
+                                styleClass="btn"
+                                text="Guardar" />
+
+                        <Button mnemonicParsing="false"
+                                styleClass="btn"
+                                text="Limpiar" />
+
+                        <Button mnemonicParsing="false"
+                                onMouseClicked="#onCloseExpediente"
+                                styleClass="btn"
+                                text="Cerrar" />
                     </children>
                 </HBox>
+
             </children>
+
             <padding>
                 <Insets bottom="20.0" left="24.0" right="20.0" />
             </padding>
@@ -72,19 +102,46 @@
             <children>
                 <TextField promptText="Buscar expediente..." styleClass="tableView" />
 
-                <TableView styleClass="contenedorColor" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tablaExpedientes"
+                           styleClass="contenedorColor"
+                           VBox.vgrow="ALWAYS">
+
                     <columns>
-                        <TableColumn prefWidth="120.0" text="No. Expediente" />
-                        <TableColumn prefWidth="200.0" text="Nombre" />
-                        <TableColumn prefWidth="110.0" text="Fecha" />
-                        <TableColumn fx:id="colEstado" prefWidth="120.0" text="Estado" />
+
+                        <TableColumn fx:id="colNumero"
+                                     prefWidth="120.0"
+                                     text="No. Expediente" />
+
+                        <TableColumn fx:id="colNombre"
+                                     prefWidth="200.0"
+                                     text="Nombre" />
+
+                        <TableColumn fx:id="colFecha"
+                                     prefWidth="110.0"
+                                     text="Fecha" />
+
+                        <TableColumn fx:id="colEstado"
+                                     prefWidth="120.0"
+                                     text="Estado" />
+
                     </columns>
+
                 </TableView>
 
                 <HBox spacing="10.0" styleClass="button-row">
                     <children>
-                        <Button mnemonicParsing="false" styleClass="btn" text="Editar" />
-                        <Button mnemonicParsing="false" styleClass="btn" text="Eliminar" />
+                        <Button fx:id="btnEditar"
+        mnemonicParsing="false"
+        onAction="#onEditarExpediente"
+        styleClass="btn"
+        text="Editar" />
+
+<Button fx:id="btnEliminar"
+        mnemonicParsing="false"
+        onAction="#onEliminarExpediente"
+        styleClass="btn"
+        text="Eliminar" />
+
                     </children>
                 </HBox>
             </children>
