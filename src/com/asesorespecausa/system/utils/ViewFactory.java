@@ -54,12 +54,12 @@ public class ViewFactory {
                 case "Expediente" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Expediente");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("viewExpediente.fxml", 900, 600);
+                    scene = loadFileFXML("ViewExpediente.fxml", 900, 600);
                 }
                 case "Actuaciones" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Actuaciones");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("viewActuaciones.fxml", 760, 550);
+                    scene = loadFileFXML("ViewActuaciones.fxml", 760, 550);
                 }
                 default -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
