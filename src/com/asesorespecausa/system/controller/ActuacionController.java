@@ -1,6 +1,8 @@
 
 package com.asesorespecausa.system.controller;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import com.asesorespecausa.system.model.Actuacion;
 import com.asesorespecausa.system.repository.ActuacionRepository;
 import com.asesorespecausa.system.utils.ViewFactory;
@@ -73,6 +75,7 @@ public class ActuacionController implements Initializable {
     private ActuacionRepository actuacionRepository =
             new ActuacionRepository();
 
+ 
     private String idExpediente;
     private String idUsuario;
 
@@ -81,6 +84,29 @@ public class ActuacionController implements Initializable {
 
         tblActuaciones.setItems(listaActuaciones);
     }
+    
+    @FXML
+public void onEliminarActuacion(ActionEvent event) {
+
+    String[] actuacion = obtenerActuacionSeleccionada();
+
+    if (actuacion == null) {
+        return;
+    }
+
+    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+    alerta.setTitle("Eliminar actuación");
+    alerta.setHeaderText(null);
+    alerta.setContentText("¿Está seguro de que desea eliminar esta actuación?");
+
+    if (alerta.showAndWait().get() == ButtonType.OK) {
+    listaActuaciones.remove(actuacion);
+    tblActuaciones.refresh();
+
+    System.out.println("Actuación eliminada.");
+}
+    }
+}
 
     @FXML
     public void onRegistrarActuacion(ActionEvent event) {
@@ -190,5 +216,17 @@ public class ActuacionController implements Initializable {
 
         listaActuaciones.clear();
     }
+
+    private String[] obtenerActuacionSeleccionada() {
+
+    String[] actuacion = tblActuaciones.getSelectionModel().getSelectedItem();
+
+    if (actuacion == null) {
+        System.out.println("Seleccione una actuación.");
+        return null;
+    }
+
+    return actuacion;
+}
 }
 

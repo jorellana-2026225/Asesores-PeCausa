@@ -137,6 +137,7 @@
                         onAction="#onRegistrarActuacion"
                         text="Registrar actuación"/>
 
+                <Button text="Eliminar" onAction="#onEliminarActuacion"/>
             </children>
 
             <padding>
