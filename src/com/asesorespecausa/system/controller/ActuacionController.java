@@ -1,8 +1,5 @@
-
 package com.asesorespecausa.system.controller;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import com.asesorespecausa.system.model.Actuacion;
 import com.asesorespecausa.system.repository.ActuacionRepository;
 import com.asesorespecausa.system.utils.ViewFactory;
@@ -14,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -69,44 +68,51 @@ public class ActuacionController implements Initializable {
     @FXML
     private Button btnCerrar;
 
-    private ObservableList<String[]> listaActuaciones =
-            FXCollections.observableArrayList();
+    private ObservableList<String[]> listaActuaciones
+            = FXCollections.observableArrayList();
 
-    private ActuacionRepository actuacionRepository =
-            new ActuacionRepository();
+    private ActuacionRepository actuacionRepository
+            = new ActuacionRepository();
 
- 
     private String idExpediente;
     private String idUsuario;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+  @Override
+public void initialize(URL url, ResourceBundle rb) {
 
-        tblActuaciones.setItems(listaActuaciones);
-    }
-    
+    tblActuaciones.setItems(listaActuaciones);
+
+    tblActuaciones.getSelectionModel().selectedItemProperty().addListener(
+            (observable, anterior, actual) -> {
+
+                if (actual != null) {
+                    cargarActuacionSeleccionada();
+                }
+            }
+    );
+}
     @FXML
-public void onEliminarActuacion(ActionEvent event) {
+    public void onEliminarActuacion(ActionEvent event) {
 
-    String[] actuacion = obtenerActuacionSeleccionada();
+        String[] actuacion = obtenerActuacionSeleccionada();
 
-    if (actuacion == null) {
-        return;
+        if (actuacion == null) {
+            return;
+        }
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Eliminar actuación");
+        alerta.setHeaderText(null);
+        alerta.setContentText(
+                "¿Está seguro de que desea eliminar esta actuación?");
+
+        if (alerta.showAndWait().get() == ButtonType.OK) {
+            listaActuaciones.remove(actuacion);
+            tblActuaciones.refresh();
+
+            System.out.println("Actuación eliminada.");
+        }
     }
-
-    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-    alerta.setTitle("Eliminar actuación");
-    alerta.setHeaderText(null);
-    alerta.setContentText("¿Está seguro de que desea eliminar esta actuación?");
-
-    if (alerta.showAndWait().get() == ButtonType.OK) {
-    listaActuaciones.remove(actuacion);
-    tblActuaciones.refresh();
-
-    System.out.println("Actuación eliminada.");
-}
-    }
-}
 
     @FXML
     public void onRegistrarActuacion(ActionEvent event) {
@@ -219,14 +225,58 @@ public void onEliminarActuacion(ActionEvent event) {
 
     private String[] obtenerActuacionSeleccionada() {
 
-    String[] actuacion = tblActuaciones.getSelectionModel().getSelectedItem();
+        String[] actuacion
+                = tblActuaciones.getSelectionModel().getSelectedItem();
+
+        if (actuacion == null) {
+            System.out.println("Seleccione una actuación.");
+            return null;
+        }
+
+        return actuacion;
+    }
+    private void cargarActuacionSeleccionada() {
+
+    String[] actuacion = obtenerActuacionSeleccionada();
 
     if (actuacion == null) {
-        System.out.println("Seleccione una actuación.");
-        return null;
+        return;
     }
 
-    return actuacion;
+    dpFechaActuacion.setValue(LocalDate.parse(actuacion[0]));
+    txtTitulo.setText(actuacion[1]);
+    txtDescripcion.setText(actuacion[2]);
 }
-}
+    @FXML
+public void onEditarActuacion(ActionEvent event) {
 
+    String[] actuacion = obtenerActuacionSeleccionada();
+
+    if (actuacion == null) {
+        return;
+    }
+
+    String titulo = txtTitulo.getText();
+    String descripcion = txtDescripcion.getText();
+    LocalDate fecha = dpFechaActuacion.getValue();
+
+    if (titulo.isEmpty()) {
+        System.out.println("Ingrese el título.");
+        return;
+    }
+
+    if (descripcion.isEmpty()) {
+        System.out.println("Ingrese la descripción.");
+        return;
+    }
+
+    if (fecha == null) {
+        System.out.println("Ingrese la fecha.");
+        return;
+    }
+
+    System.out.println("Título: " + titulo);
+    System.out.println("Descripción: " + descripcion);
+    System.out.println("Fecha: " + fecha);
+}
+}

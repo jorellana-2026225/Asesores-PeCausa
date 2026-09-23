@@ -1,3 +1,4 @@
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
@@ -15,11 +16,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0"
-            prefWidth="900.0"
+<AnchorPane prefHeight="700.0" prefWidth="900.0"
             styleClass="anchorPane"
             stylesheets="@../resources/styles/ActuacionesStyle.css"
-            xmlns="http://javafx.com/javafx/26"
+            xmlns="http://javafx.com/javafx/21.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.asesorespecausa.system.controller.ActuacionController">
 
@@ -30,11 +30,13 @@
                layoutX="30.0"
                layoutY="15.0"
                prefWidth="500.0"
-               text="REGISTRO DE ACTUACIONES"
-               styleClass="Label">
+               styleClass="Label"
+               text="REGISTRO DE ACTUACIONES">
+
             <font>
-                <Font name="System Bold" size="22.0"/>
+                <Font name="System Bold" size="22.0" />
             </font>
+
         </Label>
 
         <!-- Logo -->
@@ -44,9 +46,11 @@
                    layoutY="5.0"
                    pickOnBounds="true"
                    preserveRatio="true">
+
             <image>
-                <Image url="@../resources/images/Llamaa.png"/>
+                <Image url="@../resources/images/Llamaa.png" />
             </image>
+
         </ImageView>
 
         <!-- Información del expediente -->
@@ -56,19 +60,19 @@
 
             <children>
 
-                <Label text="Cliente:"
-                       styleClass="Label"/>
+                <Label styleClass="Label"
+                       text="Cliente:" />
 
                 <Label fx:id="lblNombreCliente"
-                       text="Sin cliente asignado"
-                       styleClass="Label"/>
+                       styleClass="Label"
+                       text="Sin cliente asignado" />
 
-                <Label text="Expediente:"
-                       styleClass="Label"/>
+                <Label styleClass="Label"
+                       text="Expediente:" />
 
                 <Label fx:id="lblNumeroExpediente"
-                       text="Sin expediente"
-                       styleClass="Label"/>
+                       styleClass="Label"
+                       text="Sin expediente" />
 
             </children>
 
@@ -82,19 +86,19 @@
 
             <children>
 
-                <Label text="Título de la actuación"
-                       styleClass="Label"/>
+                <Label styleClass="Label"
+                       text="Título de la actuación" />
 
                 <TextField fx:id="txtTitulo"
-                           promptText="Ingrese el título de la actuación"/>
+                           promptText="Ingrese el título de la actuación" />
 
-                <Label text="Descripción"
-                       styleClass="Label"/>
+                <Label styleClass="Label"
+                       text="Descripción" />
 
                 <TextArea fx:id="txtDescripcion"
                           prefHeight="80.0"
                           promptText="Ingrese la descripción"
-                          wrapText="true"/>
+                          wrapText="true" />
 
                 <HBox spacing="20.0">
 
@@ -104,25 +108,25 @@
 
                             <children>
 
-                                <Label text="Fecha de actuación"
-                                       styleClass="Label"/>
+                                <Label styleClass="Label"
+                                       text="Fecha de actuación" />
 
-                                <DatePicker fx:id="dpFechaActuacion"/>
+                                <DatePicker fx:id="dpFechaActuacion" />
 
                             </children>
 
                         </VBox>
 
-                        <VBox spacing="5.0"
-                              prefWidth="300.0">
+                        <VBox prefWidth="300.0"
+                              spacing="5.0">
 
                             <children>
 
-                                <Label text="Archivo adjunto"
-                                       styleClass="Label"/>
+                                <Label styleClass="Label"
+                                       text="Archivo adjunto" />
 
                                 <TextField fx:id="txtArchivoAdjunto"
-                                           promptText="Archivo adjunto"/>
+                                           promptText="Archivo adjunto" />
 
                             </children>
 
@@ -135,28 +139,43 @@
                 <Button fx:id="btnRegistrar"
                         mnemonicParsing="false"
                         onAction="#onRegistrarActuacion"
-                        text="Registrar actuación"/>
+                        text="Registrar actuación" />
 
-                <Button text="Eliminar" onAction="#onEliminarActuacion"/>
+                <!-- Historial -->
+                <Label styleClass="Label"
+                       text="HISTORIAL DE ACTUACIONES">
+
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+
+                </Label>
+
+                <!-- Botones de acciones -->
+                <HBox spacing="10.0">
+
+                    <children>
+
+                        <Button onAction="#onEliminarActuacion"
+                                text="Eliminar" />
+
+                        <Button onAction="#onEditarActuacion"
+                                text="Editar" />
+
+                    </children>
+
+                </HBox>
+
             </children>
 
             <padding>
                 <Insets left="10.0"
-                        right="10.0"/>
+                        right="10.0" />
             </padding>
 
         </VBox>
 
-        <!-- Historial -->
-        <Label layoutX="30.0"
-               layoutY="365.0"
-               text="HISTORIAL DE ACTUACIONES"
-               styleClass="Label">
-            <font>
-                <Font name="System Bold" size="18.0"/>
-            </font>
-        </Label>
-
+        <!-- Tabla -->
         <TableView fx:id="tblActuaciones"
                    layoutX="30.0"
                    layoutY="400.0"
@@ -168,15 +187,15 @@
 
                 <TableColumn fx:id="colFecha"
                              prefWidth="150.0"
-                             text="Fecha"/>
+                             text="Fecha" />
 
                 <TableColumn fx:id="colActuacion"
                              prefWidth="250.0"
-                             text="Actuación"/>
+                             text="Actuación" />
 
                 <TableColumn fx:id="colDetalle"
                              prefWidth="440.0"
-                             text="Detalle"/>
+                             text="Detalle" />
 
             </columns>
 
@@ -188,8 +207,9 @@
                 layoutY="640.0"
                 mnemonicParsing="false"
                 onAction="#onCloseActuaciones"
-                text="Cerrar"/>
+                text="Cerrar" />
 
     </children>
 
 </AnchorPane>
+
