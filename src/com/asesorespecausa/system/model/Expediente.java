@@ -1,4 +1,4 @@
-package com.asesorespecausa.system.controller;
+package com.asesorespecausa.system.model;
 
 import java.time.LocalDate;
 

@@ -37,59 +37,36 @@
     <left>
         <VBox spacing="12.0" BorderPane.alignment="TOP_CENTER">
             <children>
-
-                <Label styleClass="Label" text="No. Expediente" />
-
-                <TextField fx:id="txtNumeroExpediente"
-                           promptText="Ej. EXP-0001"
-                           styleClass="contenedorColor" />
+                
+                <Label styleClass="Label" text="No. Expediente    " />
+                
+                <TextField fx:id="txtNumeroExpediente" promptText="Ej. EXP-0001" styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Nombre" />
 
-                <TextField fx:id="txtNombre"
-                           promptText="Nombre del expediente"
-                           styleClass="contenedorColor" />
+                <TextField fx:id="txtNombre" promptText="Nombre del expediente" styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Fecha" />
 
-                <DatePicker fx:id="dpFecha"
-                            styleClass="contenedorColor" />
+                <DatePicker fx:id="dpFecha" styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Estado" />
 
-                <ComboBox fx:id="cbEstado"
-                          prefWidth="220.0"
-                          promptText="Seleccione estado"
-                          styleClass="contenedorColor" />
+                <ComboBox fx:id="cbEstado" prefWidth="220.0" promptText="Seleccione estado" styleClass="contenedorColor" />
 
                 <Label styleClass="Label" text="Descripción" />
 
-                <TextArea fx:id="txtDescripcion"
-                          prefRowCount="5"
-                          styleClass="contenedorColor"
-                          wrapText="true" />
+                <TextArea fx:id="txtDescripcion" prefRowCount="5" styleClass="contenedorColor" wrapText="true" />
 
                 <HBox spacing="10.0" styleClass="button-row">
                     <children>
-                        <Button fx:id="btnGuardarExpediente"
-                                mnemonicParsing="false"
-                                onAction="#onGuardarExpediente"
-                                styleClass="btn"
-                                text="Guardar" />
-
-                        <Button mnemonicParsing="false"
-                                styleClass="btn"
-                                text="Limpiar" />
-
-                        <Button mnemonicParsing="false"
-                                onMouseClicked="#onCloseExpediente"
-                                styleClass="btn"
-                                text="Cerrar" />
+                        <Button fx:id="btnGuardarExpediente" mnemonicParsing="false" onAction="#onGuardarExpediente" styleClass="btn" text="Guardar" />
+                       
+                        <Button mnemonicParsing="false" onAction="#onLimpiarFormulario" styleClass="btn" text="Limpiar" />
+                        <Button mnemonicParsing="false" onMouseClicked="#onCloseExpediente" styleClass="btn" text="Cerrar" />
                     </children>
                 </HBox>
-
             </children>
-
             <padding>
                 <Insets bottom="20.0" left="24.0" right="20.0" />
             </padding>
@@ -100,48 +77,23 @@
     <center>
         <VBox spacing="10.0" styleClass="table-panel" BorderPane.alignment="CENTER">
             <children>
-                <TextField promptText="Buscar expediente..." styleClass="tableView" />
+               
+                <TextField fx:id="txtBuscador" promptText="Buscar expediente por número..." styleClass="tableView" />
 
-                <TableView fx:id="tablaExpedientes"
-                           styleClass="contenedorColor"
-                           VBox.vgrow="ALWAYS">
-
+                <TableView fx:id="tablaExpedientes" styleClass="contenedorColor" VBox.vgrow="ALWAYS">
                     <columns>
-
-                        <TableColumn fx:id="colNumero"
-                                     prefWidth="120.0"
-                                     text="No. Expediente" />
-
-                        <TableColumn fx:id="colNombre"
-                                     prefWidth="200.0"
-                                     text="Nombre" />
-
-                        <TableColumn fx:id="colFecha"
-                                     prefWidth="110.0"
-                                     text="Fecha" />
-
-                        <TableColumn fx:id="colEstado"
-                                     prefWidth="120.0"
-                                     text="Estado" />
-
+                        <TableColumn fx:id="colNumero" prefWidth="120.0" text="No. Expediente" />
+                        <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+                        <TableColumn fx:id="colFecha" prefWidth="110.0" text="Fecha" />
+                        <TableColumn fx:id="colEstado" prefWidth="120.0" text="Estado" />
                     </columns>
-
                 </TableView>
 
+                
                 <HBox spacing="10.0" styleClass="button-row">
                     <children>
-                        <Button fx:id="btnEditar"
-        mnemonicParsing="false"
-        onAction="#onEditarExpediente"
-        styleClass="btn"
-        text="Editar" />
-
-<Button fx:id="btnEliminar"
-        mnemonicParsing="false"
-        onAction="#onEliminarExpediente"
-        styleClass="btn"
-        text="Eliminar" />
-
+                        <Button mnemonicParsing="false" onAction="#onEditarExpediente" styleClass="btn" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#onEliminarExpediente" styleClass="btn" text="Eliminar" />
                     </children>
                 </HBox>
             </children>

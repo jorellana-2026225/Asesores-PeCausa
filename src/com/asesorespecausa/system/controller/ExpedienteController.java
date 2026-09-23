@@ -1,5 +1,6 @@
 package com.asesorespecausa.system.controller;
 
+import com.asesorespecausa.system.model.Expediente;
 import com.asesorespecausa.system.utils.ViewFactory;
 
 import java.net.URL;
@@ -11,6 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList; 
 
 import javafx.event.ActionEvent;
 
@@ -44,6 +46,9 @@ public class ExpedienteController implements Initializable {
     private TextArea txtDescripcion;
 
     @FXML
+    private TextField txtBuscador; 
+
+    @FXML
     private TableView<Expediente> tablaExpedientes;
 
     @FXML
@@ -58,15 +63,16 @@ public class ExpedienteController implements Initializable {
     @FXML
     private TableColumn<Expediente, String> colEstado;
 
-    private ObservableList<Expediente> expedientes
-            = FXCollections.observableArrayList();
+    private ObservableList<Expediente> expedientes = FXCollections.observableArrayList();
+    
+    
+    private FilteredList<Expediente> expedienteFilteredList;
 
     private Expediente expedienteEditando = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
         cbEstado.setItems(
                 FXCollections.observableArrayList(
                         "Activo",
@@ -75,41 +81,47 @@ public class ExpedienteController implements Initializable {
                 )
         );
 
-    
         colNumero.setCellValueFactory(
-                cellData -> new SimpleStringProperty(
-                        cellData.getValue().getNumero()
-                )
+                cellData -> new SimpleStringProperty(cellData.getValue().getNumero())
         );
 
-        
         colNombre.setCellValueFactory(
-                cellData -> new SimpleStringProperty(
-                        cellData.getValue().getNombre()
-                )
+                cellData -> new SimpleStringProperty(cellData.getValue().getNombre())
         );
 
-        
         colFecha.setCellValueFactory(
-                cellData -> new SimpleObjectProperty<>(
-                        cellData.getValue().getFecha()
-                )
+                cellData -> new SimpleObjectProperty<>(cellData.getValue().getFecha())
         );
 
-        
         colEstado.setCellValueFactory(
-                cellData -> new SimpleStringProperty(
-                        cellData.getValue().getEstado()
-                )
+                cellData -> new SimpleStringProperty(cellData.getValue().getEstado())
         );
 
-        
-        tablaExpedientes.setItems(expedientes);
+        // --- Configuración del Buscador ---
+        expedienteFilteredList = new FilteredList<>(expedientes, b -> true);
+
+        txtBuscador.textProperty().addListener((observable, oldValue, newValue) -> {
+            expedienteFilteredList.setPredicate(expediente -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                
+                if (expediente.getNumero().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+
+       
+        tablaExpedientes.setItems(expedienteFilteredList);
     }
 
     @FXML
     public void onGuardarExpediente(ActionEvent event) {
-
         String numero = txtNumeroExpediente.getText();
         String nombre = txtNombre.getText();
         LocalDate fecha = dpFecha.getValue();
@@ -117,7 +129,6 @@ public class ExpedienteController implements Initializable {
         String descripcion = txtDescripcion.getText();
 
         if (expedienteEditando != null) {
-
             expedienteEditando.setNumero(numero);
             expedienteEditando.setNombre(nombre);
             expedienteEditando.setFecha(fecha);
@@ -125,129 +136,74 @@ public class ExpedienteController implements Initializable {
             expedienteEditando.setDescripcion(descripcion);
 
             tablaExpedientes.refresh();
-
             System.out.println("Expediente actualizado.");
-
             expedienteEditando = null;
-
         } else {
-
-            Expediente expediente = new Expediente(
-                    numero,
-                    nombre,
-                    fecha,
-                    estado,
-                    descripcion
-            );
-
+            Expediente expediente = new Expediente(numero, nombre, fecha, estado, descripcion);
             expedientes.add(expediente);
-
             System.out.println("Expediente guardado.");
         }
 
-        
         limpiarFormulario();
     }
 
     @FXML
     public void onEditarExpediente(ActionEvent event) {
+        Expediente seleccionado = tablaExpedientes.getSelectionModel().getSelectedItem();
 
-        Expediente seleccionado
-                = tablaExpedientes.getSelectionModel()
-                        .getSelectedItem();
-
-        
         if (seleccionado == null) {
-
-            System.out.println(
-                    "Seleccione un expediente para editar."
-            );
-
+            System.out.println("Seleccione un expediente para editar.");
             return;
         }
 
-        
         expedienteEditando = seleccionado;
 
-        
-        txtNumeroExpediente.setText(
-                seleccionado.getNumero()
-        );
+        txtNumeroExpediente.setText(seleccionado.getNumero());
+        txtNombre.setText(seleccionado.getNombre());
+        dpFecha.setValue(seleccionado.getFecha());
+        cbEstado.setValue(seleccionado.getEstado());
+        txtDescripcion.setText(seleccionado.getDescripcion());
 
-        txtNombre.setText(
-                seleccionado.getNombre()
-        );
-
-        dpFecha.setValue(
-                seleccionado.getFecha()
-        );
-
-        cbEstado.setValue(
-                seleccionado.getEstado()
-        );
-
-        txtDescripcion.setText(
-                seleccionado.getDescripcion()
-        );
-
-        System.out.println(
-                "Editando expediente: "
-                + seleccionado.getNumero()
-        );
+        System.out.println("Editando expediente: " + seleccionado.getNumero());
     }
 
     @FXML
     public void onEliminarExpediente(ActionEvent event) {
+        Expediente seleccionado = tablaExpedientes.getSelectionModel().getSelectedItem();
 
-        Expediente seleccionado
-                = tablaExpedientes.getSelectionModel()
-                        .getSelectedItem();
-
-        
         if (seleccionado == null) {
-
-            System.out.println(
-                    "Seleccione un expediente para eliminar."
-            );
-
+            System.out.println("Seleccione un expediente para eliminar.");
             return;
         }
 
-        
         expedientes.remove(seleccionado);
 
-       
         if (expedienteEditando == seleccionado) {
             expedienteEditando = null;
         }
 
-        
         limpiarFormulario();
+        System.out.println("Expediente eliminado: " + seleccionado.getNumero());
+    }
 
-        System.out.println(
-                "Expediente eliminado: "
-                + seleccionado.getNumero()
-        );
+    @FXML
+    public void onLimpiarFormulario(ActionEvent event) {
+        limpiarFormulario();
+        expedienteEditando = null; 
+        System.out.println("Formulario limpiado.");
     }
 
     private void limpiarFormulario() {
-
         txtNumeroExpediente.clear();
-
         txtNombre.clear();
-
         dpFecha.setValue(null);
-
         cbEstado.setValue(null);
-
         txtDescripcion.clear();
     }
 
     @FXML
     public void onCloseExpediente(MouseEvent event) {
-
         ViewFactory viewFacto = new ViewFactory();
-
         viewFacto.viewWelcome();
     }
 }
