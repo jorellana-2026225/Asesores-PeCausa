@@ -1,4 +1,3 @@
-```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
@@ -166,6 +165,24 @@
 
                 </HBox>
 
+                <!-- Buscador -->
+                <HBox spacing="10.0">
+
+                    <children>
+
+                        <TextField fx:id="txtBuscar"
+                                   prefWidth="300.0"
+                                   promptText="Buscar actuación por título" />
+
+                        <Button fx:id="btnBuscar"
+                                mnemonicParsing="false"
+                                onAction="#onBuscarActuacion"
+                                text="Buscar" />
+
+                    </children>
+
+                </HBox>
+
             </children>
 
             <padding>
@@ -212,4 +229,3 @@
     </children>
 
 </AnchorPane>
-

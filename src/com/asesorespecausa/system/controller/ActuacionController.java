@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.beans.property.SimpleStringProperty;
 
 public class ActuacionController implements Initializable {
 
@@ -68,6 +69,12 @@ public class ActuacionController implements Initializable {
     @FXML
     private Button btnCerrar;
 
+    @FXML
+    private TextField txtBuscar;
+
+    @FXML
+    private Button btnBuscar;
+
     private ObservableList<String[]> listaActuaciones
             = FXCollections.observableArrayList();
 
@@ -80,6 +87,23 @@ public class ActuacionController implements Initializable {
   @Override
 public void initialize(URL url, ResourceBundle rb) {
 
+    // TEMPORAL: solo para pruebas, mientras se conecta el flujo real
+    // desde la vista Expediente. Reemplaza estos valores por los que
+    // obtuviste con las consultas SQL, y borra estas 2 líneas cuando
+    // ya tengas la navegación real implementada.
+    idExpediente = "EXP11111-1111-1111-1111-111111111111";
+    idUsuario = "22222222-2222-2222-2222-222222222222";
+
+    // T1.1 - Asignar sus Propiedades a cada Columna
+    colFecha.setCellValueFactory(dataColumna
+            -> new SimpleStringProperty(dataColumna.getValue()[1]));
+
+    colActuacion.setCellValueFactory(dataColumna
+            -> new SimpleStringProperty(dataColumna.getValue()[2]));
+
+    colDetalle.setCellValueFactory(dataColumna
+            -> new SimpleStringProperty(dataColumna.getValue()[3]));
+
     tblActuaciones.setItems(listaActuaciones);
 
     tblActuaciones.getSelectionModel().selectedItemProperty().addListener(
@@ -90,6 +114,10 @@ public void initialize(URL url, ResourceBundle rb) {
                 }
             }
     );
+
+    // TEMPORAL: normalmente esto se dispara solo con setIdExpediente,
+    // pero como aún no hay navegación real, lo llamamos aquí para probar.
+    cargarActuaciones();
 }
     @FXML
     public void onEliminarActuacion(ActionEvent event) {
@@ -100,13 +128,20 @@ public void initialize(URL url, ResourceBundle rb) {
             return;
         }
 
+        // T1.2 - Lanzar una Alerta de Confirmacion
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Eliminar actuación");
         alerta.setHeaderText(null);
         alerta.setContentText(
                 "¿Está seguro de que desea eliminar esta actuación?");
 
+        // T1.3 - Si el Usuario Acepta Removerla de la Tabla
         if (alerta.showAndWait().get() == ButtonType.OK) {
+
+            String idActuacion = actuacion[0];
+
+            actuacionRepository.eliminar(idActuacion);
+
             listaActuaciones.remove(actuacion);
             tblActuaciones.refresh();
 
@@ -164,24 +199,32 @@ public void initialize(URL url, ResourceBundle rb) {
 
         actuacionRepository.create(actuacion);
 
-        listaActuaciones.add(new String[]{
-            fecha.toString(),
-            titulo,
-            descripcion
-        });
-
-        tblActuaciones.refresh();
-
         txtTitulo.clear();
         txtDescripcion.clear();
         dpFechaActuacion.setValue(null);
         txtArchivoAdjunto.clear();
+
+        cargarActuaciones();
 
         System.out.println("Actuación registrada.");
     }
 
     public void setIdExpediente(String idExpediente) {
         this.idExpediente = idExpediente;
+        cargarActuaciones();
+    }
+
+    // T1.2 - Llamar al Metodo nesesario desde ActuacionRepository
+    private void cargarActuaciones() {
+
+        if (idExpediente == null) {
+            return;
+        }
+
+        listaActuaciones.setAll(
+                actuacionRepository.listarPorExpediente(idExpediente));
+
+        tblActuaciones.refresh();
     }
 
     public void setIdUsuario(String idUsuario) {
@@ -207,6 +250,7 @@ public void initialize(URL url, ResourceBundle rb) {
             String detalle) {
 
         listaActuaciones.add(new String[]{
+            null,
             fecha,
             actuacion,
             detalle
@@ -243,19 +287,22 @@ public void initialize(URL url, ResourceBundle rb) {
         return;
     }
 
-    dpFechaActuacion.setValue(LocalDate.parse(actuacion[0]));
-    txtTitulo.setText(actuacion[1]);
-    txtDescripcion.setText(actuacion[2]);
+    // T1.1 - Seleccionar la Actuacion de la Tabla
+    dpFechaActuacion.setValue(LocalDate.parse(actuacion[1]));
+    txtTitulo.setText(actuacion[2]);
+    txtDescripcion.setText(actuacion[3]);
 }
     @FXML
 public void onEditarActuacion(ActionEvent event) {
 
+    // T1.1 - Seleccionar la Actuacion de la Tabla
     String[] actuacion = obtenerActuacionSeleccionada();
 
     if (actuacion == null) {
         return;
     }
 
+    // T1.2 - Capturar los Valores Modificados en los TextFields
     String titulo = txtTitulo.getText();
     String descripcion = txtDescripcion.getText();
     LocalDate fecha = dpFechaActuacion.getValue();
@@ -275,8 +322,52 @@ public void onEditarActuacion(ActionEvent event) {
         return;
     }
 
-    System.out.println("Título: " + titulo);
-    System.out.println("Descripción: " + descripcion);
-    System.out.println("Fecha: " + fecha);
+    String idActuacion = actuacion[0];
+
+    Actuacion actuacionEditada = new Actuacion(
+            idActuacion,
+            idExpediente,
+            idUsuario,
+            titulo,
+            descripcion,
+            fecha,
+            txtArchivoAdjunto.getText()
+    );
+
+    // T1.3 - Llamar a ActuacionRepository
+    actuacionRepository.editar(actuacionEditada);
+
+    // T1.4 - Refrescar la tabla con los nuevos cambios
+    cargarActuaciones();
+
+    System.out.println("Actuación editada.");
 }
+
+    // T1.1 - Capturar el Texto Ingresado para Buscar
+    @FXML
+    public void onBuscarActuacion(ActionEvent event) {
+
+        if (idExpediente == null) {
+            return;
+        }
+
+        String texto = txtBuscar.getText();
+
+        if (texto == null || texto.isEmpty()) {
+            // T1.2 - Llamar una Consulta de ActuacionRepository
+            cargarActuaciones();
+            return;
+        }
+
+        // T1.2 - Llamar una Consulta de ActuacionRepository
+        ObservableList<String[]> resultados
+                = actuacionRepository.buscarPorTitulo(idExpediente, texto);
+
+        // T1.3 - Remplazar los datos de la Columna
+        listaActuaciones.setAll(resultados);
+
+        tblActuaciones.refresh();
+
+        System.out.println("Búsqueda realizada: " + texto);
+    }
 }
