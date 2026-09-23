@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="rootPane" prefHeight="600.0" prefWidth="900.0" styleClass="borderPane" stylesheets="@../resources/styles/ExpedienteStyle.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.ExpedienteController">
+
+    <!-- ===================== TOP: Título ===================== -->
+    <top>
+        <VBox styleClass="vbox-Padre" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="160.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/images/Llamaa.png" />
+                    </image>
+                </ImageView>
+            </children>
+            <padding>
+                <Insets left="200.0" />
+            </padding>
+        </VBox>
+    </top>
+
+    <!-- ===================== LEFT: Formulario ===================== -->
+    <left>
+        <VBox spacing="12.0" BorderPane.alignment="TOP_CENTER">
+            <children>
+                
+                <Label styleClass="Label" text="No. Expediente    " />
+                
+                <TextField fx:id="txtNumeroExpediente" promptText="Ej. EXP-0001" styleClass="contenedorColor" />
+
+                <Label styleClass="Label" text="Nombre" />
+
+                <TextField fx:id="txtNombre" promptText="Nombre del expediente" styleClass="contenedorColor" />
+
+                <Label styleClass="Label" text="Fecha" />
+
+                <DatePicker fx:id="dpFecha" styleClass="contenedorColor" />
+
+                <Label styleClass="Label" text="Estado" />
+
+                <ComboBox fx:id="cbEstado" prefWidth="220.0" promptText="Seleccione estado" styleClass="contenedorColor" />
+
+                <Label styleClass="Label" text="Descripción" />
+
+                <TextArea fx:id="txtDescripcion" prefRowCount="5" styleClass="contenedorColor" wrapText="true" />
+
+                <HBox spacing="10.0" styleClass="button-row">
+                    <children>
+                        <Button fx:id="btnGuardarExpediente" mnemonicParsing="false" onAction="#onGuardarExpediente" styleClass="btn" text="Guardar" />
+                       
+                        <Button mnemonicParsing="false" onAction="#onLimpiarFormulario" styleClass="btn" text="Limpiar" />
+                        <Button mnemonicParsing="false" onMouseClicked="#onCloseExpediente" styleClass="btn" text="Cerrar" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="24.0" right="20.0" />
+            </padding>
+        </VBox>
+    </left>
+
+    <!-- ===================== CENTER: Tabla de expedientes ===================== -->
+    <center>
+        <VBox spacing="10.0" styleClass="table-panel" BorderPane.alignment="CENTER">
+            <children>
+               
+                <TextField fx:id="txtBuscador" promptText="Buscar expediente por número..." styleClass="tableView" />
+
+                <TableView fx:id="tablaExpedientes" styleClass="contenedorColor" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colNumero" prefWidth="120.0" text="No. Expediente" />
+                        <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+                        <TableColumn fx:id="colFecha" prefWidth="110.0" text="Fecha" />
+                        <TableColumn fx:id="colEstado" prefWidth="120.0" text="Estado" />
+                    </columns>
+                </TableView>
+
+                
+                <HBox spacing="10.0" styleClass="button-row">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#onEditarExpediente" styleClass="btn" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#onEliminarExpediente" styleClass="btn" text="Eliminar" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="10.0" right="24.0" top="20.0" />
+            </padding>
+        </VBox>
+    </center>
+
+</BorderPane>

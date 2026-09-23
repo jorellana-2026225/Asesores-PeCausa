@@ -114,4 +114,6 @@ public class Cliente {
                 ", fecha_registro=" + fecha_registro +
                 '}';
     }
+    
+    
 }

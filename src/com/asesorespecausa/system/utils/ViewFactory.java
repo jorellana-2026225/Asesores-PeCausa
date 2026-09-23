@@ -7,12 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import com.asesorespecausa.system.Main;
-import com.asesorespecausa.system.utils.SceneManager;
 
 public class ViewFactory {
 
+//Atributos
     private final String PATH_VIEWS = "/com/asesorespecausa/system/view/";
-    
+
 //Metodos
     public Scene loadFileFXML(String nameFile, int width, int height) {
         String pathOfFile = PATH_VIEWS + nameFile;
@@ -36,21 +36,36 @@ public class ViewFactory {
         Scene scene = null;
         try {
             switch (nameFile) {
-                case "Welcome" ->
+                case "Welcome" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Bienvenida");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+                }
                 case "Login" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
                     scene = loadFileFXML("ViewLogin.fxml", 500, 400);
                 }
                 case "Registro" -> {
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro de Expediente");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("ViewRegistro.fxml", 380, 500);
+                    scene = loadFileFXML("ViewRegistro.fxml", 800, 660);
                 }
-
-                default ->
-                    scene = loadFileFXML("ViewWelcome.fxml", 400, 400);
+                case "Expediente" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Expediente");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("viewExpediente.fxml", 900, 600);
+                }
+                case "Actuaciones" -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Actuaciones");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("viewActuaciones.fxml", 760, 550);
+                }
+                default -> {
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
+                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
+                    scene = loadFileFXML("ViewLogin.fxml", 400, 400);
+                }
             }
             SceneManager.getInstanciaSceneManger().changeScene(scene);
         } catch (NullPointerException e) {
@@ -69,6 +84,14 @@ public class ViewFactory {
 
     public void viewRegistro() {
         loadScene("Registro");
+    }
+    
+    public void viewExpediente() {
+        loadScene("Expediente");
+    }
+    
+    public void viewActuaciones() {
+        loadScene("Actuaciones");
     }
 
 }
