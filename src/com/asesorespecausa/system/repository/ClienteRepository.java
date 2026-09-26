@@ -1,4 +1,4 @@
- package com.asesorespecausa.system.repository;
+package com.asesorespecausa.system.repository;
 
 import com.asesorespecausa.system.config.ConexionDB;
 import com.asesorespecausa.system.model.Cliente;
@@ -13,7 +13,6 @@ import java.util.List;
 public class ClienteRepository {
 
     private ConexionDB conexionDB = ConexionDB.getInstanciaConexionDB();
-
 
     public List<Cliente> listarClientes() {
         List<Cliente> clientes = new ArrayList<>();
@@ -149,4 +148,3 @@ public class ClienteRepository {
         }
     }
 }
-

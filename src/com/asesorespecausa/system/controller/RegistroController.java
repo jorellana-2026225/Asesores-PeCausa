@@ -124,7 +124,6 @@ public class RegistroController implements Initializable {
         tblClientes.setItems(datos);
     }
 
-    
     @FXML
     public void onBuscarCliente(KeyEvent event) {
         refrescarTabla();
@@ -144,7 +143,6 @@ public class RegistroController implements Initializable {
         }
     }
 
-   
     @FXML
     public void onActualizarCliente(MouseEvent event) {
         if (clienteSeleccionado == null) {
@@ -191,7 +189,6 @@ public class RegistroController implements Initializable {
         }
     }
 
-  
     @FXML
     public void onEliminarCliente(MouseEvent event) {
         Cliente seleccionado = tblClientes.getSelectionModel().getSelectedItem();
@@ -230,7 +227,6 @@ public class RegistroController implements Initializable {
         ocultarError();
         actualizarPromptsSegunTipoCliente();
     }
-
 
     @FXML
     public void onRegistrarExpediente(MouseEvent event) {

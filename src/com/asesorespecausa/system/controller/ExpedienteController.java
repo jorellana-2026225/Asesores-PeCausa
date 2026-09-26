@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList; 
+import javafx.collections.transformation.FilteredList;
 
 import javafx.event.ActionEvent;
 
@@ -46,7 +46,7 @@ public class ExpedienteController implements Initializable {
     private TextArea txtDescripcion;
 
     @FXML
-    private TextField txtBuscador; 
+    private TextField txtBuscador;
 
     @FXML
     private TableView<Expediente> tablaExpedientes;
@@ -64,8 +64,7 @@ public class ExpedienteController implements Initializable {
     private TableColumn<Expediente, String> colEstado;
 
     private ObservableList<Expediente> expedientes = FXCollections.observableArrayList();
-    
-    
+
     private FilteredList<Expediente> expedienteFilteredList;
 
     private Expediente expedienteEditando = null;
@@ -108,7 +107,6 @@ public class ExpedienteController implements Initializable {
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                
                 if (expediente.getNumero().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
@@ -116,7 +114,6 @@ public class ExpedienteController implements Initializable {
             });
         });
 
-       
         tablaExpedientes.setItems(expedienteFilteredList);
     }
 
@@ -189,7 +186,7 @@ public class ExpedienteController implements Initializable {
     @FXML
     public void onLimpiarFormulario(ActionEvent event) {
         limpiarFormulario();
-        expedienteEditando = null; 
+        expedienteEditando = null;
         System.out.println("Formulario limpiado.");
     }
 

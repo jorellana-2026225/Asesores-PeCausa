@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class UserRepository {
-    
+
     private ConexionDB conexionDB = ConexionDB.getInstanciaConexionDB();
-    
-        public User searchByName(String name) {
+
+    public User searchByName(String name) {
         User user = null;
         String sql = "select * from usuario where nombre_usuario = ?";
 

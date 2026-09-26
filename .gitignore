@@ -1,3 +1,11 @@
-dist/
-src/com/asesorespecausa/system/config/Enviroment.java
+- Archivos compilados e imágenes de salida:
+build/
 /build/
+dist/
+*.class
+
+- Archivos con datos sensibles:
+src/com/asesorespecausa/system/config/Enviroment.java
+
+- Configuraciones locales/privadas de NetBeans:
+nbproject/private/
