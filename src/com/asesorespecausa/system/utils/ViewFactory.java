@@ -49,7 +49,7 @@ public class ViewFactory {
                 case "Registro" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Registro");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("ViewRegistro.fxml", 400, 535);
+                    scene = loadFileFXML("ViewRegistro.fxml", 800, 660);
                 }
                 case "Expediente" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Expediente");
