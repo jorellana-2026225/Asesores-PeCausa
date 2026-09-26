@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import com.asesorespecausa.system.Main;
+import com.asesorespecausa.system.controller.ActuacionController;
 
 public class ViewFactory {
 
@@ -54,12 +55,7 @@ public class ViewFactory {
                 case "Expediente" -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Expediente");
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("ViewExpediente.fxml", 900, 600);
-                }
-                case "Actuaciones" -> {
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Actuaciones");
-                    SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
-                    scene = loadFileFXML("ViewActuaciones.fxml", 760, 550);
+                    scene = loadFileFXML("viewExpediente.fxml", 900, 600);
                 }
                 default -> {
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Inicio de Sesion");
@@ -90,8 +86,38 @@ public class ViewFactory {
         loadScene("Expediente");
     }
     
-    public void viewActuaciones() {
-        loadScene("Actuaciones");
+    /**
+     * Abre la pantalla de Actuaciones ya cargada con el expediente,
+     * el cliente y el usuario que corresponden. Se necesita el
+     * controlador (no solo la Scene) para poder pasarle esos datos
+     * antes de mostrar la ventana, por eso no usa loadFileFXML().
+     */
+    public void viewActuaciones(String idExpediente, String idUsuario,
+            String nombreCliente, String numeroExpediente) {
+
+        try {
+            FXMLLoader loadFXML = new FXMLLoader();
+            URL urlFile = Main.class.getResource(PATH_VIEWS + "ViewActuaciones.fxml");
+            loadFXML.setBuilderFactory(new JavaFXBuilderFactory());
+            loadFXML.setLocation(urlFile);
+
+            // Ancho y alto igual al diseño del FXML (900 x 760) para que
+            // no se encimen los botones ni se corte la tabla.
+            Scene scene = new Scene(loadFXML.load(), 900, 760);
+
+            ActuacionController controlador = loadFXML.getController();
+            controlador.setIdUsuario(idUsuario);
+            controlador.setInformacionCliente(nombreCliente, numeroExpediente);
+            controlador.setIdExpediente(idExpediente);
+
+            SceneManager.getInstanciaSceneManger().getStagePrincipal().setTitle("Actuaciones");
+            SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(true);
+            SceneManager.getInstanciaSceneManger().changeScene(scene);
+
+        } catch (IOException e) {
+            System.out.println("Error al abrir la pantalla de Actuaciones");
+            e.printStackTrace();
+        }
     }
 
 }

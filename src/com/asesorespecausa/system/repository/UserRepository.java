@@ -26,7 +26,8 @@ public class UserRepository {
                 if (rs.next()) {
                     user = new User(
                             rs.getString("nombre_usuario"),
-                            rs.getString("clave")
+                            rs.getString("clave"),
+                            rs.getString("id_usuario")
                     );
                 }
             }

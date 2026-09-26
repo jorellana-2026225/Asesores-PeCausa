@@ -8,7 +8,9 @@ import com.asesorespecausa.system.repository.ActuacionRepository;
 import com.asesorespecausa.system.utils.ViewFactory;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,16 +27,7 @@ import javafx.scene.control.TextField;
 public class ActuacionController implements Initializable {
 
     @FXML
-    private Label lblTitulo;
-
-    @FXML
-    private Label lblCliente;
-
-    @FXML
     private Label lblNombreCliente;
-
-    @FXML
-    private Label lblExpediente;
 
     @FXML
     private Label lblNumeroExpediente;
@@ -55,58 +48,140 @@ public class ActuacionController implements Initializable {
     private Button btnRegistrar;
 
     @FXML
-    private TableView<String[]> tblActuaciones;
+    private TextField txtBuscar;
 
     @FXML
-    private TableColumn<String[], String> colFecha;
+    private TableView<Actuacion> tblActuaciones;
 
     @FXML
-    private TableColumn<String[], String> colActuacion;
+    private TableColumn<Actuacion, String> colFecha;
 
     @FXML
-    private TableColumn<String[], String> colDetalle;
+    private TableColumn<Actuacion, String> colActuacion;
+
+    @FXML
+    private TableColumn<Actuacion, String> colDetalle;
 
     @FXML
     private Button btnCerrar;
 
-    private ObservableList<String[]> listaActuaciones =
+    // Lista que se muestra en la tabla (puede estar filtrada por la busqueda)
+    private ObservableList<Actuacion> listaActuaciones =
             FXCollections.observableArrayList();
+
+    // Lista completa sin filtrar, se usa como base para el buscador
+    private List<Actuacion> listaCompleta;
 
     private ActuacionRepository actuacionRepository =
             new ActuacionRepository();
 
- 
     private String idExpediente;
     private String idUsuario;
+
+    // Si no es null, significa que se esta editando esta actuacion
+    // en vez de estar creando una nueva.
+    private Actuacion actuacionEnEdicion;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         tblActuaciones.setItems(listaActuaciones);
+
+        colFecha.setCellValueFactory(datos ->
+                new SimpleStringProperty(datos.getValue().getFechaActuacion().toString()));
+
+        colActuacion.setCellValueFactory(datos ->
+                new SimpleStringProperty(datos.getValue().getTitulo()));
+
+        colDetalle.setCellValueFactory(datos ->
+                new SimpleStringProperty(datos.getValue().getDescripcion()));
     }
-    
+
+    /**
+     * Trae de la base de datos todas las actuaciones del expediente
+     * actual y las muestra en la tabla.
+     */
+    private void cargarTabla() {
+
+        if (idExpediente == null) {
+            return;
+        }
+
+        listaCompleta = actuacionRepository.obtenerPorExpediente(idExpediente);
+        listaActuaciones.setAll(listaCompleta);
+    }
+
     @FXML
-public void onEliminarActuacion(ActionEvent event) {
+    public void onBuscarActuacion(ActionEvent event) {
 
-    String[] actuacion = obtenerActuacionSeleccionada();
+        String textoBuscado = txtBuscar.getText();
 
-    if (actuacion == null) {
-        return;
+        if (listaCompleta == null) {
+            return;
+        }
+
+        if (textoBuscado == null || textoBuscado.isBlank()) {
+            listaActuaciones.setAll(listaCompleta);
+            return;
+        }
+
+        String texto = textoBuscado.toLowerCase();
+
+        listaActuaciones.clear();
+
+        for (Actuacion actuacion : listaCompleta) {
+            boolean coincideTitulo = actuacion.getTitulo() != null
+                    && actuacion.getTitulo().toLowerCase().contains(texto);
+            boolean coincideDescripcion = actuacion.getDescripcion() != null
+                    && actuacion.getDescripcion().toLowerCase().contains(texto);
+
+            if (coincideTitulo || coincideDescripcion) {
+                listaActuaciones.add(actuacion);
+            }
+        }
     }
 
-    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-    alerta.setTitle("Eliminar actuación");
-    alerta.setHeaderText(null);
-    alerta.setContentText("¿Está seguro de que desea eliminar esta actuación?");
+    @FXML
+    public void onEditarActuacion(ActionEvent event) {
 
-    if (alerta.showAndWait().get() == ButtonType.OK) {
-    listaActuaciones.remove(actuacion);
-    tblActuaciones.refresh();
+        Actuacion actuacion = obtenerActuacionSeleccionada();
 
-    System.out.println("Actuación eliminada.");
-}
+        if (actuacion == null) {
+            return;
+        }
+
+        actuacionEnEdicion = actuacion;
+
+        txtTitulo.setText(actuacion.getTitulo());
+        txtDescripcion.setText(actuacion.getDescripcion());
+        dpFechaActuacion.setValue(actuacion.getFechaActuacion());
+        txtArchivoAdjunto.setText(actuacion.getArchivoAdjunto());
+
+        btnRegistrar.setText("Guardar cambios");
     }
-}
+
+    @FXML
+    public void onEliminarActuacion(ActionEvent event) {
+
+        Actuacion actuacion = obtenerActuacionSeleccionada();
+
+        if (actuacion == null) {
+            return;
+        }
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Eliminar actuación");
+        alerta.setHeaderText(null);
+        alerta.setContentText("¿Está seguro de que desea eliminar esta actuación?");
+
+        if (alerta.showAndWait().get() == ButtonType.OK) {
+
+            actuacionRepository.eliminar(actuacion.getIdActuacion());
+            cargarTabla();
+
+            System.out.println("Actuación eliminada.");
+        }
+    }
 
     @FXML
     public void onRegistrarActuacion(ActionEvent event) {
@@ -116,66 +191,89 @@ public void onEliminarActuacion(ActionEvent event) {
         LocalDate fecha = dpFechaActuacion.getValue();
         String archivo = txtArchivoAdjunto.getText();
 
-        if (titulo.isEmpty()) {
-            System.out.println("Ingrese el título.");
+        if (titulo == null || titulo.isEmpty()) {
+            mostrarAdvertencia("Ingrese el título.");
             return;
         }
 
-        if (descripcion.isEmpty()) {
-            System.out.println("Ingrese la descripción.");
+        if (descripcion == null || descripcion.isEmpty()) {
+            mostrarAdvertencia("Ingrese la descripción.");
             return;
         }
 
         if (fecha == null) {
-            System.out.println("Ingrese la fecha.");
+            mostrarAdvertencia("Ingrese la fecha.");
             return;
         }
 
-        if (archivo.isEmpty()) {
-            System.out.println("Ingrese el archivo.");
+        if (archivo == null || archivo.isEmpty()) {
+            mostrarAdvertencia("Ingrese el archivo.");
             return;
         }
 
         if (idExpediente == null) {
-            System.out.println("No hay expediente.");
+            mostrarAdvertencia("No hay un expediente asignado a esta ventana.");
             return;
         }
 
         if (idUsuario == null) {
-            System.out.println("No hay usuario.");
+            mostrarAdvertencia("No hay un usuario con sesión iniciada.");
             return;
         }
 
-        Actuacion actuacion = new Actuacion(
-                null,
-                idExpediente,
-                idUsuario,
-                titulo,
-                descripcion,
-                fecha,
-                archivo
-        );
+        if (actuacionEnEdicion == null) {
 
-        actuacionRepository.create(actuacion);
+            // Se esta creando una actuacion nueva
+            Actuacion actuacion = new Actuacion(
+                    null,
+                    idExpediente,
+                    idUsuario,
+                    titulo,
+                    descripcion,
+                    fecha,
+                    archivo
+            );
 
-        listaActuaciones.add(new String[]{
-            fecha.toString(),
-            titulo,
-            descripcion
-        });
+            actuacionRepository.create(actuacion);
+            System.out.println("Actuación registrada.");
 
-        tblActuaciones.refresh();
+        } else {
 
+            // Se esta guardando la edicion de una actuacion existente
+            actuacionEnEdicion.setTitulo(titulo);
+            actuacionEnEdicion.setDescripcion(descripcion);
+            actuacionEnEdicion.setFechaActuacion(fecha);
+            actuacionEnEdicion.setArchivoAdjunto(archivo);
+
+            actuacionRepository.editar(actuacionEnEdicion);
+            actuacionEnEdicion = null;
+            btnRegistrar.setText("Registrar actuación");
+
+            System.out.println("Actuación actualizada.");
+        }
+
+        cargarTabla();
+        limpiarFormulario();
+    }
+
+    private void limpiarFormulario() {
         txtTitulo.clear();
         txtDescripcion.clear();
         dpFechaActuacion.setValue(null);
         txtArchivoAdjunto.clear();
+    }
 
-        System.out.println("Actuación registrada.");
+    private void mostrarAdvertencia(String mensaje) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Actuaciones");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 
     public void setIdExpediente(String idExpediente) {
         this.idExpediente = idExpediente;
+        cargarTabla();
     }
 
     public void setIdUsuario(String idUsuario) {
@@ -195,38 +293,15 @@ public void onEliminarActuacion(ActionEvent event) {
         lblNumeroExpediente.setText(expediente);
     }
 
-    public void agregarRegistroTabla(
-            String fecha,
-            String actuacion,
-            String detalle) {
+    private Actuacion obtenerActuacionSeleccionada() {
 
-        listaActuaciones.add(new String[]{
-            fecha,
-            actuacion,
-            detalle
-        });
+        Actuacion actuacion = tblActuaciones.getSelectionModel().getSelectedItem();
+
+        if (actuacion == null) {
+            mostrarAdvertencia("Seleccione una actuación de la tabla.");
+            return null;
+        }
+
+        return actuacion;
     }
-
-    public boolean tieneRegistros() {
-
-        return !listaActuaciones.isEmpty();
-    }
-
-    public void limpiarTabla() {
-
-        listaActuaciones.clear();
-    }
-
-    private String[] obtenerActuacionSeleccionada() {
-
-    String[] actuacion = tblActuaciones.getSelectionModel().getSelectedItem();
-
-    if (actuacion == null) {
-        System.out.println("Seleccione una actuación.");
-        return null;
-    }
-
-    return actuacion;
 }
-}
-

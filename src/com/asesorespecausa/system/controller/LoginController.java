@@ -1,7 +1,9 @@
 package com.asesorespecausa.system.controller;
 
+import com.asesorespecausa.system.model.User;
 import com.asesorespecausa.system.service.AuthenticationService;
 import com.asesorespecausa.system.service.AuthenticationStatus;
+import com.asesorespecausa.system.utils.Sesion;
 import com.asesorespecausa.system.utils.ViewFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,6 +37,10 @@ public class LoginController implements Initializable {
 
        if (status == AuthenticationStatus.LOGIN_SUCCESS){    
              System.out.println("Logueado");
+
+             User usuario = authService.getUsuarioAutenticado();
+             Sesion.iniciarSesion(usuario.getIdUser(), usuario.getName());
+
               ViewFactory viewFacto = new ViewFactory();
               viewFacto.viewWelcome();
               
