@@ -1,4 +1,3 @@
-
 package com.asesorespecausa.system.controller;
 
 import javafx.scene.control.Alert;
@@ -28,87 +27,78 @@ public class ActuacionController implements Initializable {
 
     @FXML
     private Label lblNombreCliente;
-
     @FXML
     private Label lblNumeroExpediente;
-
     @FXML
     private TextField txtTitulo;
-
     @FXML
     private TextArea txtDescripcion;
-
     @FXML
     private DatePicker dpFechaActuacion;
-
     @FXML
     private TextField txtArchivoAdjunto;
-
     @FXML
     private Button btnRegistrar;
-
     @FXML
     private TextField txtBuscar;
-
     @FXML
     private TableView<Actuacion> tblActuaciones;
-
     @FXML
     private TableColumn<Actuacion, String> colFecha;
-
     @FXML
     private TableColumn<Actuacion, String> colActuacion;
-
     @FXML
     private TableColumn<Actuacion, String> colDetalle;
-
     @FXML
     private Button btnCerrar;
 
-    // Lista que se muestra en la tabla (puede estar filtrada por la busqueda)
-    private ObservableList<Actuacion> listaActuaciones =
-            FXCollections.observableArrayList();
+    private ObservableList<Actuacion> listaActuaciones
+            = FXCollections.observableArrayList();
 
-    // Lista completa sin filtrar, se usa como base para el buscador
     private List<Actuacion> listaCompleta;
 
-    private ActuacionRepository actuacionRepository =
-            new ActuacionRepository();
+    private ActuacionRepository actuacionRepository
+            = new ActuacionRepository();
 
-    private String idExpediente;
-    private String idUsuario;
+    private String idExpediente = "EXP11111-1111-1111-1111-111111111111";
+    private String idUsuario = "22222222-2222-2222-2222-222222222222";
 
-    // Si no es null, significa que se esta editando esta actuacion
-    // en vez de estar creando una nueva.
     private Actuacion actuacionEnEdicion;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        if (lblNombreCliente != null && (lblNombreCliente.getText() == null || lblNombreCliente.getText().isEmpty())) {
+            lblNombreCliente.setText("Carlos Lopez");
+        }
+        if (lblNumeroExpediente != null && (lblNumeroExpediente.getText() == null || lblNumeroExpediente.getText().isEmpty())) {
+            lblNumeroExpediente.setText("EXP-001");
+        }
+
         tblActuaciones.setItems(listaActuaciones);
 
-        colFecha.setCellValueFactory(datos ->
-                new SimpleStringProperty(datos.getValue().getFechaActuacion().toString()));
+        colFecha.setCellValueFactory(datos
+                -> new SimpleStringProperty(datos.getValue().getFechaActuacion().toString()));
 
-        colActuacion.setCellValueFactory(datos ->
-                new SimpleStringProperty(datos.getValue().getTitulo()));
+        colActuacion.setCellValueFactory(datos
+                -> new SimpleStringProperty(datos.getValue().getTitulo()));
 
-        colDetalle.setCellValueFactory(datos ->
-                new SimpleStringProperty(datos.getValue().getDescripcion()));
+        colDetalle.setCellValueFactory(datos
+                -> new SimpleStringProperty(datos.getValue().getDescripcion()));
+
+        cargarTabla();
     }
 
-    /**
-     * Trae de la base de datos todas las actuaciones del expediente
-     * actual y las muestra en la tabla.
-     */
     private void cargarTabla() {
 
         if (idExpediente == null) {
-            return;
+            idExpediente = "EXP11111-1111-1111-1111-111111111111";
         }
 
         listaCompleta = actuacionRepository.obtenerPorExpediente(idExpediente);
-        listaActuaciones.setAll(listaCompleta);
+        if (listaCompleta != null) {
+            listaActuaciones.setAll(listaCompleta);
+        }
     }
 
     @FXML
@@ -179,7 +169,7 @@ public class ActuacionController implements Initializable {
             actuacionRepository.eliminar(actuacion.getIdActuacion());
             cargarTabla();
 
-            System.out.println("Actuación eliminada.");
+            System.out.println("Actuación eliminada con éxito 🗑️.");
         }
     }
 
@@ -212,18 +202,15 @@ public class ActuacionController implements Initializable {
         }
 
         if (idExpediente == null) {
-            mostrarAdvertencia("No hay un expediente asignado a esta ventana.");
-            return;
+            idExpediente = "EXP11111-1111-1111-1111-111111111111";
         }
 
         if (idUsuario == null) {
-            mostrarAdvertencia("No hay un usuario con sesión iniciada.");
-            return;
+            idUsuario = "22222222-2222-2222-2222-222222222222";
         }
 
         if (actuacionEnEdicion == null) {
 
-            // Se esta creando una actuacion nueva
             Actuacion actuacion = new Actuacion(
                     null,
                     idExpediente,
@@ -235,11 +222,10 @@ public class ActuacionController implements Initializable {
             );
 
             actuacionRepository.create(actuacion);
-            System.out.println("Actuación registrada.");
+            System.out.println("Actuación registrada en la Base de Datos ✅.");
 
         } else {
 
-            // Se esta guardando la edicion de una actuacion existente
             actuacionEnEdicion.setTitulo(titulo);
             actuacionEnEdicion.setDescripcion(descripcion);
             actuacionEnEdicion.setFechaActuacion(fecha);
@@ -249,7 +235,7 @@ public class ActuacionController implements Initializable {
             actuacionEnEdicion = null;
             btnRegistrar.setText("Registrar actuación");
 
-            System.out.println("Actuación actualizada.");
+            System.out.println("Actuación actualizada correctamente 🔄.");
         }
 
         cargarTabla();

@@ -104,7 +104,7 @@ public class ViewFactory {
 
                     SceneManager.getInstanciaSceneManger().getStagePrincipal().setResizable(false);
 
-                    scene = loadFileFXML("ViewActuaciones.fxml", 760, 550);
+                    scene = loadFileFXML("ViewActuaciones.fxml", 900, 760);
 
                 }
 
