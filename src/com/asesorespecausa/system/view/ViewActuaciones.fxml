@@ -1,59 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="760.0" styleClass="anchorPane" stylesheets="@../resources/styles/ActuacionesStyle.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asesorespecausa.system.controller.ActuacionesController">
-   <children>
-      <!-- 3. Título -->
-      <Label alignment="CENTER" layoutX="20.0" layoutY="14.0" prefHeight="32.0" prefWidth="321.0" styleClass="Label" text="HISTORIAL DE ACTUACIONES">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
+<<<<<<< HEAD
+<AnchorPane prefHeight="760.0"
+            prefWidth="900.0"
+=======
+<AnchorPane prefHeight="700.0" prefWidth="900.0"
+>>>>>>> aed81d0511573b571d6da02cf811aa770e78de67
+            styleClass="anchorPane"
+            stylesheets="@../resources/styles/ActuacionesStyle.css"
+            xmlns="http://javafx.com/javafx/21.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.asesorespecausa.system.controller.ActuacionController">
 
-      <!-- 4. Información del cliente -->
-      <Label layoutX="30.0" layoutY="80.0" styleClass="Label" text="Cliente:">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="130.0" layoutY="80.0" styleClass="Label" text="Nombre del cliente" />
+    <children>
 
-      <!-- 5. Información del expediente -->
-      <Label layoutX="30.0" layoutY="115.0" styleClass="Label" text="Expediente:">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="130.0" layoutY="115.0" styleClass="Label" text="EXP-000" />
+        <!-- Título -->
+        <Label alignment="CENTER"
+               layoutX="30.0"
+               layoutY="15.0"
+               prefWidth="500.0"
+               styleClass="Label"
+               text="REGISTRO DE ACTUACIONES">
 
-      <!-- 6. Crear el TableView -->
-      <TableView layoutX="30.0" layoutY="155.0" prefHeight="350.0" prefWidth="700.0" styleClass="tableView">
-        <columns>
-          <!-- 7. Primera columna: Fecha -->
-          <TableColumn prefWidth="150.0" text="Fecha" />
-          
-          <!-- 8. Segunda columna: Actuación -->
-          <TableColumn prefWidth="220.0" text="Actuación" />
-          
-          <!-- 9. Tercera columna: Detalle -->
-          <TableColumn prefWidth="330.0" text="Detalle" />
-        </columns>
-      </TableView>
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
 
-      <!-- 10. Botón Cerrar -->
-      <Button layoutX="650.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#onCloseActuaciones" prefWidth="80.0" styleClass="btnClose" text="Cerrar" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="575.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/images/Llamaa.png" />
-         </image>
-      </ImageView>
-   </children>
+        </Label>
+
+        <!-- Logo -->
+        <ImageView fitHeight="100.0"
+                   fitWidth="130.0"
+                   layoutX="750.0"
+                   layoutY="5.0"
+                   pickOnBounds="true"
+                   preserveRatio="true">
+
+            <image>
+                <Image url="@../resources/images/Llamaa.png" />
+            </image>
+
+        </ImageView>
+
+        <!-- Información del expediente -->
+        <HBox layoutX="30.0"
+              layoutY="70.0"
+              spacing="15.0">
+
+            <children>
+
+                <Label styleClass="Label"
+                       text="Cliente:" />
+
+                <Label fx:id="lblNombreCliente"
+                       styleClass="Label"
+                       text="Sin cliente asignado" />
+
+                <Label styleClass="Label"
+                       text="Expediente:" />
+
+                <Label fx:id="lblNumeroExpediente"
+                       styleClass="Label"
+                       text="Sin expediente" />
+
+            </children>
+
+        </HBox>
+
+        <!-- Formulario -->
+        <VBox layoutX="30.0"
+              layoutY="110.0"
+              prefWidth="840.0"
+              spacing="8.0">
+
+            <children>
+
+                <Label styleClass="Label"
+                       text="Título de la actuación" />
+
+                <TextField fx:id="txtTitulo"
+                           promptText="Ingrese el título de la actuación" />
+
+                <Label styleClass="Label"
+                       text="Descripción" />
+
+                <TextArea fx:id="txtDescripcion"
+                          prefHeight="80.0"
+                          promptText="Ingrese la descripción"
+                          wrapText="true" />
+
+                <HBox spacing="20.0">
+
+                    <children>
+
+                        <VBox spacing="5.0">
+
+                            <children>
+
+                                <Label styleClass="Label"
+                                       text="Fecha de actuación" />
+
+                                <DatePicker fx:id="dpFechaActuacion" />
+
+                            </children>
+
+                        </VBox>
+
+                        <VBox prefWidth="300.0"
+                              spacing="5.0">
+
+                            <children>
+
+                                <Label styleClass="Label"
+                                       text="Archivo adjunto" />
+
+                                <TextField fx:id="txtArchivoAdjunto"
+                                           promptText="Archivo adjunto" />
+
+                            </children>
+
+                        </VBox>
+
+                    </children>
+
+                </HBox>
+
+<<<<<<< HEAD
+                <HBox spacing="10.0">
+
+                    <children>
+
+                        <Button fx:id="btnRegistrar"
+                                mnemonicParsing="false"
+                                onAction="#onRegistrarActuacion"
+                                text="Registrar actuación"/>
+
+                        <Button text="Editar" onAction="#onEditarActuacion"/>
+
+                        <Button text="Eliminar" onAction="#onEliminarActuacion"/>
+
+                    </children>
+
+                </HBox>
+=======
+                <Button fx:id="btnRegistrar"
+                        mnemonicParsing="false"
+                        onAction="#onRegistrarActuacion"
+                        text="Registrar actuación" />
+
+                <!-- Historial -->
+                <Label styleClass="Label"
+                       text="HISTORIAL DE ACTUACIONES">
+
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+
+                </Label>
+
+                <!-- Botones de acciones -->
+                <HBox spacing="10.0">
+
+                    <children>
+
+                        <Button onAction="#onEliminarActuacion"
+                                text="Eliminar" />
+
+                        <Button onAction="#onEditarActuacion"
+                                text="Editar" />
+
+                    </children>
+
+                </HBox>
+
+                <!-- Buscador -->
+                <HBox spacing="10.0">
+
+                    <children>
+
+                        <TextField fx:id="txtBuscar"
+                                   prefWidth="300.0"
+                                   promptText="Buscar actuación por título" />
+
+                        <Button fx:id="btnBuscar"
+                                mnemonicParsing="false"
+                                onAction="#onBuscarActuacion"
+                                text="Buscar" />
+
+                    </children>
+
+                </HBox>
+
+>>>>>>> aed81d0511573b571d6da02cf811aa770e78de67
+            </children>
+
+            <padding>
+                <Insets left="10.0"
+                        right="10.0" />
+            </padding>
+
+        </VBox>
+
+<<<<<<< HEAD
+        <!-- Historial -->
+        <Label layoutX="30.0"
+               layoutY="405.0"
+               text="HISTORIAL DE ACTUACIONES"
+               styleClass="Label">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Label>
+
+        <HBox layoutX="500.0"
+              layoutY="408.0"
+              spacing="8.0">
+
+            <children>
+
+                <TextField fx:id="txtBuscar"
+                           promptText="Buscar por título o descripción"
+                           prefWidth="280.0"/>
+
+                <Button text="Buscar" onAction="#onBuscarActuacion"/>
+
+            </children>
+
+        </HBox>
+
+=======
+        <!-- Tabla -->
+>>>>>>> aed81d0511573b571d6da02cf811aa770e78de67
+        <TableView fx:id="tblActuaciones"
+                   layoutX="30.0"
+                   layoutY="440.0"
+                   prefHeight="230.0"
+                   prefWidth="840.0"
+                   styleClass="tableView">
+
+            <columns>
+
+                <TableColumn fx:id="colFecha"
+                             prefWidth="150.0"
+                             text="Fecha" />
+
+                <TableColumn fx:id="colActuacion"
+                             prefWidth="250.0"
+                             text="Actuación" />
+
+                <TableColumn fx:id="colDetalle"
+                             prefWidth="440.0"
+                             text="Detalle" />
+
+            </columns>
+
+        </TableView>
+
+        <!-- Cerrar -->
+        <Button fx:id="btnCerrar"
+                layoutX="790.0"
+                layoutY="700.0"
+                mnemonicParsing="false"
+                onAction="#onCloseActuaciones"
+                text="Cerrar" />
+
+    </children>
+
 </AnchorPane>

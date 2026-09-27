@@ -1,5 +1,5 @@
 package com.asesorespecausa.system.controller;
-
+ 
 import com.asesorespecausa.system.service.AuthenticationService;
 import com.asesorespecausa.system.service.AuthenticationStatus;
 import com.asesorespecausa.system.utils.ViewFactory;
@@ -11,13 +11,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import com.asesorespecausa.system.utils.AlertInformation;
-
+ 
 public class LoginController implements Initializable {
-
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-
+ 
     @FXML
     private AuthenticationService authService = new AuthenticationService();
     @FXML
@@ -26,21 +26,21 @@ public class LoginController implements Initializable {
     private PasswordField passwordField;
     @FXML
     private PasswordField passwordConfirmationField;
-
+ 
     private AlertInformation alertInfo = new AlertInformation();
-
+ 
     @FXML
     public void onInicioSesion(MouseEvent event) {
         String name = nameField.getText();
         String password = passwordField.getText();
-
+ 
         AuthenticationStatus status = authService.tryLogin(name, password);
-
+ 
         if (status == AuthenticationStatus.LOGIN_SUCCESS) {
             System.out.println("Logueado");
             ViewFactory viewFacto = new ViewFactory();
             viewFacto.viewWelcome();
-
+ 
         } else if (status == AuthenticationStatus.NOT_EXIST_USER) {
             alertInfo.viewAlert("Error de campo", "Error de campo vacio", "No llenaste todos los campos", "Error");
 //            System.out.println("El Usuario ingresado no esta registrado");
@@ -48,5 +48,5 @@ public class LoginController implements Initializable {
             System.out.println("Error en las credenciales");
         }
     }
-
+ 
 }
