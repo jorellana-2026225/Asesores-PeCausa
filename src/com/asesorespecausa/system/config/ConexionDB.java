@@ -18,11 +18,12 @@ public class ConexionDB {
                     Enviroment.PASSWORD);
 
         } catch (ClassNotFoundException classNotFound) {
-            System.out.println("Error clase no encontrada");
+            System.out.println("Error: Clase no Encontrada");
         } catch (SQLException sqlException) {
-            System.out.println("Error de Conexion a DB");
+            System.out.println("Error de Conexión a DB: " + sqlException.getMessage());
+            sqlException.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Error Padre" + e.getMessage());
+            System.out.println("Error General: " + e.getMessage());
         }
     }
 
@@ -40,5 +41,4 @@ public class ConexionDB {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-
 }

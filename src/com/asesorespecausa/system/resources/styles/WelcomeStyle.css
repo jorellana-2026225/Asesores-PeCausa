@@ -18,9 +18,9 @@
 .btn-registro,
 .btn-expedientes,
 .btn-actuaciones {
-/*    -fx-text-fill: #BA8E23;
-    -fx-font-size: 15px;*/
-    
+    /*    -fx-text-fill: #BA8E23;
+        -fx-font-size: 15px;*/
+
     -fx-background-color: transparent;
     -fx-text-fill: #BA8E23;
     -fx-border-color: #BA8E23;

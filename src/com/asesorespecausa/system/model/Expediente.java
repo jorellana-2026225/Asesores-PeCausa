@@ -1,30 +1,68 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.asesorespecausa.system.model;
-
+ 
+import java.time.LocalDate;
+ 
 public class Expediente {
-
-    private String idExpediente;
-    private String numeroExpediente;
-    private String nombreCliente;
-
-    public Expediente() {
+ 
+    private String numero;
+    private String nombre;
+    private LocalDate fecha;
+    private String estado;
+    private String descripcion;
+ 
+    public Expediente(String numero, String nombre, LocalDate fecha,
+                      String estado, String descripcion) {
+ 
+        this.numero = numero;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.descripcion = descripcion;
+    }
+ 
+    public String getNumero() {
+        return numero;
+    }
+ 
+    public String getNombre() {
+        return nombre;
+    }
+ 
+    public LocalDate getFecha() {
+        return fecha;
+    }
+ 
+    public String getEstado() {
+        return estado;
+    }
+ 
+    public String getDescripcion() {
+        return descripcion;
+    }
+ 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+ 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+ 
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+ 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+ 
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public Expediente(String idExpediente, String numeroExpediente, String nombreCliente) {
-        this.idExpediente = idExpediente;
-        this.numeroExpediente = numeroExpediente;
-        this.nombreCliente = nombreCliente;
-    }
-
-    public String getIdExpediente() { return idExpediente; }
-    public void setIdExpediente(String idExpediente) { this.idExpediente = idExpediente; }
-
-    public String getNumeroExpediente() { return numeroExpediente; }
-    public void setNumeroExpediente(String numeroExpediente) { this.numeroExpediente = numeroExpediente; }
-
-    public String getNombreCliente() { return nombreCliente; }
-    public void setNombreCliente(String nombreCliente) { this.nombreCliente = nombreCliente; }
 }

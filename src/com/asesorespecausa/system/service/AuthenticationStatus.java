@@ -1,4 +1,3 @@
-
 package com.asesorespecausa.system.service;
 
 public enum AuthenticationStatus {
